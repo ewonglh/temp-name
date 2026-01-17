@@ -1,0 +1,412 @@
+/* Dark Mode Theme for MUI Form Elements */
+
+/* TextField - Outlined, Filled, and Standard variants */
+.MuiTextField-root .MuiInputBase-input {
+    color: #ffffff !important;
+}
+
+.MuiTextField-root .MuiInputLabel-root {
+    color: #b0b0b0 !important;
+}
+
+.MuiTextField-root .MuiInputLabel-root.Mui-focused {
+    color: #ffffff !important;
+}
+
+.MuiTextField-root .MuiInputLabel-root.Mui-error {
+    color: #f44336 !important;
+}
+
+/* Outlined TextField */
+.MuiTextField-root .MuiOutlinedInput-root {
+    color: #ffffff !important;
+    border-color: #666666 !important;
+}
+
+.MuiTextField-root .MuiOutlinedInput-root:hover {
+    border-color: #888888 !important;
+}
+
+.MuiTextField-root .MuiOutlinedInput-root.Mui-focused {
+    border-color: #ffffff !important;
+}
+
+.MuiTextField-root .MuiOutlinedInput-root.Mui-error {
+    border-color: #f44336 !important;
+}
+
+.MuiTextField-root .MuiOutlinedInput-notchedOutline {
+    border-color: #666666 !important;
+}
+
+.MuiTextField-root .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+    border-color: #888888 !important;
+}
+
+.MuiTextField-root .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: #ffffff !important;
+}
+
+.MuiTextField-root .MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline {
+    border-color: #f44336 !important;
+}
+
+/* Filled TextField */
+.MuiTextField-root .MuiFilledInput-root {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    color: #ffffff !important;
+    border-bottom: 1px solid #666666 !important;
+}
+
+.MuiTextField-root .MuiFilledInput-root:hover {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    border-bottom-color: #888888 !important;
+}
+
+.MuiTextField-root .MuiFilledInput-root.Mui-focused {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border-bottom-color: #ffffff !important;
+}
+
+.MuiTextField-root .MuiFilledInput-root.Mui-error {
+    border-bottom-color: #f44336 !important;
+}
+
+/* Standard TextField */
+.MuiTextField-root .MuiInput-root {
+    color: #ffffff !important;
+    border-bottom: 1px solid #666666 !important;
+}
+
+.MuiTextField-root .MuiInput-root:hover:not(.Mui-disabled):before {
+    border-bottom-color: #888888 !important;
+}
+
+.MuiTextField-root .MuiInput-root.Mui-focused:after {
+    border-bottom-color: #ffffff !important;
+}
+
+.MuiTextField-root .MuiInput-root.Mui-error:after {
+    border-bottom-color: #f44336 !important;
+}
+
+/* Helper text */
+.MuiTextField-root .MuiFormHelperText-root {
+    color: #b0b0b0 !important;
+}
+
+.MuiTextField-root .MuiFormHelperText-root.Mui-error {
+    color: #f44336 !important;
+}
+
+/* Slider */
+.MuiSlider-root {
+    color: #ffffff !important;
+}
+
+.MuiSlider-thumb {
+    background-color: #ffffff !important;
+    border: 2px solid #666666 !important;
+}
+
+.MuiSlider-thumb:hover {
+    box-shadow: 0px 0px 0px 8px rgba(255, 255, 255, 0.16) !important;
+}
+
+.MuiSlider-thumb.Mui-active {
+    box-shadow: 0px 0px 0px 14px rgba(255, 255, 255, 0.16) !important;
+}
+
+.MuiSlider-thumb.Mui-focusVisible {
+    box-shadow: 0px 0px 0px 8px rgba(255, 255, 255, 0.16) !important;
+}
+
+.MuiSlider-track {
+    background-color: #ffffff !important;
+}
+
+.MuiSlider-rail {
+    background-color: #666666 !important;
+}
+
+.MuiSlider-mark {
+    background-color: #b0b0b0 !important;
+}
+
+.MuiSlider-markLabel {
+    color: #ffffff !important;
+}
+
+.MuiSlider-valueLabel {
+    background-color: #666666 !important;
+    color: #ffffff !important;
+}
+
+/* Checkbox */
+.MuiCheckbox-root {
+    color: #b0b0b0 !important;
+}
+
+.MuiCheckbox-root:hover {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.MuiCheckbox-root.Mui-checked {
+    color: #ffffff !important;
+}
+
+.MuiCheckbox-root.Mui-disabled {
+    color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Radio */
+.MuiRadio-root {
+    color: #b0b0b0 !important;
+}
+
+.MuiRadio-root:hover {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.MuiRadio-root.Mui-checked {
+    color: #ffffff !important;
+}
+
+.MuiRadio-root.Mui-disabled {
+    color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Switch */
+.MuiSwitch-root {
+    color: #b0b0b0 !important;
+}
+
+.MuiSwitch-switchBase {
+    color: #b0b0b0 !important;
+}
+
+.MuiSwitch-switchBase.Mui-checked {
+    color: #ffffff !important;
+}
+
+.MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track {
+    background-color: #ffffff !important;
+    opacity: 0.5 !important;
+}
+
+.MuiSwitch-track {
+    background-color: #666666 !important;
+    opacity: 0.5 !important;
+}
+
+/* ButtonGroup */
+.MuiButtonGroup-root {
+    border-color: #666666 !important;
+}
+
+.MuiButtonGroup-grouped {
+    color: #ffffff !important;
+    border-color: #666666 !important;
+}
+
+.MuiButtonGroup-grouped:hover {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    border-color: #888888 !important;
+}
+
+.MuiButtonGroup-grouped.Mui-selected {
+    background-color: rgba(255, 255, 255, 0.12) !important;
+    color: #ffffff !important;
+    border-color: #ffffff !important;
+}
+
+.MuiButtonGroup-grouped.Mui-disabled {
+    color: rgba(255, 255, 255, 0.3) !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* Select */
+.MuiSelect-root {
+    color: #ffffff !important;
+}
+
+.MuiSelect-icon {
+    color: #b0b0b0 !important;
+}
+
+.MuiSelect-root.Mui-focused .MuiSelect-icon {
+    color: #ffffff !important;
+}
+
+.MuiSelect-root.Mui-disabled {
+    color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.MuiSelect-root.Mui-disabled .MuiSelect-icon {
+    color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* FormControlLabel */
+.MuiFormControlLabel-root {
+    color: #ffffff !important;
+}
+
+.MuiFormControlLabel-label {
+    color: #ffffff !important;
+}
+
+.MuiFormControlLabel-label.Mui-disabled {
+    color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* FormControl */
+.MuiFormControl-root .MuiInputLabel-root {
+    color: #b0b0b0 !important;
+}
+
+.MuiFormControl-root .MuiInputLabel-root.Mui-focused {
+    color: #ffffff !important;
+}
+
+.MuiFormControl-root .MuiInputLabel-root.Mui-error {
+    color: #f44336 !important;
+}
+
+/* Autocomplete */
+.MuiAutocomplete-root .MuiInputBase-input {
+    color: #ffffff !important;
+}
+
+.MuiAutocomplete-root .MuiInputBase-root {
+    color: #ffffff !important;
+}
+
+.MuiAutocomplete-root .MuiOutlinedInput-root {
+    border-color: #666666 !important;
+}
+
+.MuiAutocomplete-root .MuiOutlinedInput-root:hover {
+    border-color: #888888 !important;
+}
+
+.MuiAutocomplete-root .MuiOutlinedInput-root.Mui-focused {
+    border-color: #ffffff !important;
+}
+
+.MuiAutocomplete-popper .MuiPaper-root {
+    background-color: #2a2e36 !important;
+    color: #ffffff !important;
+}
+
+.MuiAutocomplete-option {
+    color: #ffffff !important;
+}
+
+.MuiAutocomplete-option:hover {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.MuiAutocomplete-option.Mui-focused {
+    background-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+.MuiAutocomplete-option[aria-selected="true"] {
+    background-color: rgba(255, 255, 255, 0.16) !important;
+}
+
+/* Rating */
+.MuiRating-root {
+    color: #ffffff !important;
+}
+
+.MuiRating-iconEmpty {
+    color: #666666 !important;
+}
+
+.MuiRating-iconFilled {
+    color: #ffffff !important;
+}
+
+.MuiRating-iconHover {
+    color: #b0b0b0 !important;
+}
+
+/* ToggleButton */
+.MuiToggleButton-root {
+    color: #ffffff !important;
+    border-color: #666666 !important;
+}
+
+.MuiToggleButton-root:hover {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    border-color: #888888 !important;
+}
+
+.MuiToggleButton-root.Mui-selected {
+    background-color: rgba(255, 255, 255, 0.12) !important;
+    color: #ffffff !important;
+    border-color: #ffffff !important;
+}
+
+.MuiToggleButton-root.Mui-selected:hover {
+    background-color: rgba(255, 255, 255, 0.16) !important;
+}
+
+.MuiToggleButton-root.Mui-disabled {
+    color: rgba(255, 255, 255, 0.3) !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* DatePicker / TimePicker (if using MUI X) */
+.MuiPickersPopper-root {
+    background-color: #2a2e36 !important;
+}
+
+.MuiPickersCalendarHeader-root {
+    color: #ffffff !important;
+}
+
+.MuiPickersDay-root {
+    color: #ffffff !important;
+}
+
+.MuiPickersDay-root:hover {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.MuiPickersDay-root.Mui-selected {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    color: #ffffff !important;
+}
+
+.MuiPickersDay-root.Mui-disabled {
+    color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Input Adornment */
+.MuiInputAdornment-root {
+    color: #b0b0b0 !important;
+}
+
+.MuiInputAdornment-root .MuiIconButton-root {
+    color: #b0b0b0 !important;
+}
+
+.MuiInputAdornment-root .MuiIconButton-root:hover {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    color: #ffffff !important;
+}
+
+/* Chip (often used in forms) */
+.MuiChip-root {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: #ffffff !important;
+}
+
+.MuiChip-deleteIcon {
+    color: #b0b0b0 !important;
+}
+
+.MuiChip-deleteIcon:hover {
+    color: #ffffff !important;
+}

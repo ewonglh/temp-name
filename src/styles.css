@@ -7,6 +7,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: padding-bottom 0.3s ease-in-out;
+}
+
+html {
+  transition: padding-bottom 0.3s ease-in-out;
 }
 
 code {
