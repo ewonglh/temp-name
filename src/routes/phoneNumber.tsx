@@ -3,7 +3,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import React, { useRef, useState } from 'react';
 import { Stack, TextField, Button } from '@mui/material';
 
-const actualNumber = 65161729;
+const actualNumber = 65161709;
 var hi = 99999999;
 var lo = 0;
 function binSearch(hi: number, lo: number){
@@ -27,6 +27,7 @@ const PhoneNumber: React.FC = () => {
         //TODO
         if(actualNumber===phoneNumber){
             //success
+            setFeedback("Yes it is :D");
         }else{
             reset();
             setFeedback("No it isnt >:|");
@@ -42,7 +43,19 @@ const PhoneNumber: React.FC = () => {
     
     
     return (
-        <Stack spacing = {3} width = {300} direction="column">
+        <Stack 
+            spacing = {3} 
+            width = {300} 
+            direction="column"
+            sx = {{
+                display: "flex",
+                position: "relative",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "100vh",
+                width: "100vw"
+            }}
+        >
             <TextField
                 label = ""
                 value = ""

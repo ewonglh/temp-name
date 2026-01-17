@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SineRouteImport } from './routes/sine'
 import { Route as ScuffedRouteImport } from './routes/scuffed'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as PhoneNumberRouteImport } from './routes/phoneNumber'
@@ -16,6 +17,11 @@ import { Route as MorseRouteImport } from './routes/morse'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as IndexRouteImport } from './routes/index'
 
+const SineRoute = SineRouteImport.update({
+  id: '/sine',
+  path: '/sine',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ScuffedRoute = ScuffedRouteImport.update({
   id: '/scuffed',
   path: '/scuffed',
@@ -54,6 +60,7 @@ export interface FileRoutesByFullPath {
   '/phoneNumber': typeof PhoneNumberRoute
   '/register': typeof RegisterRoute
   '/scuffed': typeof ScuffedRoute
+  '/sine': typeof SineRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +69,7 @@ export interface FileRoutesByTo {
   '/phoneNumber': typeof PhoneNumberRoute
   '/register': typeof RegisterRoute
   '/scuffed': typeof ScuffedRoute
+  '/sine': typeof SineRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,6 +79,7 @@ export interface FileRoutesById {
   '/phoneNumber': typeof PhoneNumberRoute
   '/register': typeof RegisterRoute
   '/scuffed': typeof ScuffedRoute
+  '/sine': typeof SineRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -81,8 +90,16 @@ export interface FileRouteTypes {
     | '/phoneNumber'
     | '/register'
     | '/scuffed'
+    | '/sine'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/morse' | '/phoneNumber' | '/register' | '/scuffed'
+  to:
+    | '/'
+    | '/login'
+    | '/morse'
+    | '/phoneNumber'
+    | '/register'
+    | '/scuffed'
+    | '/sine'
   id:
     | '__root__'
     | '/'
@@ -91,6 +108,7 @@ export interface FileRouteTypes {
     | '/phoneNumber'
     | '/register'
     | '/scuffed'
+    | '/sine'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -100,10 +118,18 @@ export interface RootRouteChildren {
   PhoneNumberRoute: typeof PhoneNumberRoute
   RegisterRoute: typeof RegisterRoute
   ScuffedRoute: typeof ScuffedRoute
+  SineRoute: typeof SineRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sine': {
+      id: '/sine'
+      path: '/sine'
+      fullPath: '/sine'
+      preLoaderRoute: typeof SineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/scuffed': {
       id: '/scuffed'
       path: '/scuffed'
@@ -156,6 +182,7 @@ const rootRouteChildren: RootRouteChildren = {
   PhoneNumberRoute: PhoneNumberRoute,
   RegisterRoute: RegisterRoute,
   ScuffedRoute: ScuffedRoute,
+  SineRoute: SineRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

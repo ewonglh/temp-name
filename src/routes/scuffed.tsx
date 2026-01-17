@@ -245,7 +245,18 @@ const AngryNumbers: React.FC = () => {
 
   // ---------------- UI ----------------
   return (
-    <Stack spacing={2} alignItems="center">
+    <Stack 
+      spacing={2} alignItems="center"
+      sx = {{
+        display: "flex",
+        position: "relative",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+        width: "100vw"
+      }}
+
+    >
       <Typography variant="h6">Enter Your Postal Code</Typography>
 
       <canvas

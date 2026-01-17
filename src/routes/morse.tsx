@@ -41,7 +41,8 @@ const MORSE_CODE: { [key:string]: string}  = {
   '---..': '8',
   '----.': '9',
   '/': ' ',
-  ' ':''
+  ' ':'',
+  '':''
 };
 
 function morseToText(morse: string) {
@@ -52,9 +53,9 @@ function morseToText(morse: string) {
     const translated = words.map((word)=>{
       const letters = word.split(' ');
       const translatedLetters = letters.map((letter) =>{
-        if(!MORSE_CODE[letter]){
+        if(!MORSE_CODE[letter]&&letter!==''){
           throw new Error("bad input");
-          return "?"
+          return "-1";
         }
         return MORSE_CODE[letter];
       })
@@ -112,6 +113,7 @@ const Morse: React.FC = () => {
 
   const clear = () => {
     setMorse("");
+    setInput("");
   };
 
   const login = () => {
@@ -120,10 +122,18 @@ const Morse: React.FC = () => {
 
  
   return (
-    <Stack spacing={3} width={300}>
-      <TextField
-        
-      />
+    <Stack spacing={3} width={300}
+    sx = {{
+      display: "flex",
+      position: "relative",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "100vh",
+      width: "100vw"
+
+    }}
+    >
+      
       <TextField
         label={morseTF}
         defaultValue="Output"
