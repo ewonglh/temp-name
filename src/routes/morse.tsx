@@ -62,7 +62,7 @@ function morseToText(morse: string) {
     })  
     return translated.join(' ');
   }catch(error){
-    return "bad input";
+    return "That's not morse code >:|";
   }
 }
 
@@ -155,6 +155,8 @@ const Morse: React.FC = () => {
         <TextField
           label = {timeDelta}
           variant = "filled"
+          inputProps ={{readOnly: true}}
+        
           
         ></TextField>
         
