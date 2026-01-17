@@ -3,6 +3,9 @@ import { useState } from 'react'
 import {
   AppBar,
   Box,
+  Dialog,
+  DialogContent,
+  DialogTitle,
   Divider,
   Drawer,
   IconButton,
@@ -15,6 +18,7 @@ import {
   Typography,
 } from '@mui/material'
 import {
+  Calculator,
   ChevronLeft,
   Home,
   Keyboard as KeyboardIcon,
@@ -23,10 +27,12 @@ import {
   Music,
   Phone,
   UserPlus,
+  X,
 } from 'lucide-react'
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
+  const [isCalculatorOpen, setIsCalculatorOpen] = useState(false)
   const toggleDrawer = () => setIsOpen(!isOpen)
 
   const navItems = [
@@ -43,6 +49,7 @@ export default function Header() {
       path: '/demo/keyboard',
       icon: <KeyboardIcon size={20} />,
     },
+    { label: 'Date Demo', path: '/demo/date', icon: <Phone size={20} /> },
   ]
 
   return (
@@ -69,6 +76,13 @@ export default function Header() {
           >
             INPUT HELL
           </Typography>
+          <IconButton
+            color="inherit"
+            onClick={() => setIsCalculatorOpen(true)}
+            sx={{ ml: 2 }}
+          >
+            <Calculator size={24} />
+          </IconButton>
         </Toolbar>
       </AppBar>
 
@@ -152,6 +166,42 @@ export default function Header() {
           ))}
         </List>
       </Drawer>
+
+      <Dialog
+        open={isCalculatorOpen}
+        onClose={() => setIsCalculatorOpen(false)}
+        maxWidth="lg"
+        fullWidth
+        PaperProps={{
+          sx: {
+            height: '80vh',
+            bgcolor: '#1a1a1a',
+            color: 'white',
+          },
+        }}
+      >
+        <DialogTitle sx={{ m: 0, p: 2, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          Desmos Scientific Calculator
+          <IconButton
+            aria-label="close"
+            onClick={() => setIsCalculatorOpen(false)}
+            sx={{ color: 'white' }}
+          >
+            <X size={20} />
+          </IconButton>
+        </DialogTitle>
+        <DialogContent sx={{ p: 0, overflow: 'hidden' }}>
+          <iframe
+            src="https://www.desmos.com/scientific"
+            style={{
+              width: '100%',
+              height: '100%',
+              border: 'none',
+            }}
+            title="Desmos Scientific Calculator"
+          />
+        </DialogContent>
+      </Dialog>
       <Toolbar />
     </>
   )

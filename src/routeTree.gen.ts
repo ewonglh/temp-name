@@ -15,6 +15,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as DemoRhythmRouteImport } from './routes/demo/rhythm'
 import { Route as DemoPhoneRouteImport } from './routes/demo/phone'
 import { Route as DemoKeyboardRouteImport } from './routes/demo/keyboard'
+import { Route as DemoDateRouteImport } from './routes/demo/date'
 
 const RegisterRoute = RegisterRouteImport.update({
   id: '/register',
@@ -46,11 +47,17 @@ const DemoKeyboardRoute = DemoKeyboardRouteImport.update({
   path: '/demo/keyboard',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DemoDateRoute = DemoDateRouteImport.update({
+  id: '/demo/date',
+  path: '/demo/date',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
+  '/demo/date': typeof DemoDateRoute
   '/demo/keyboard': typeof DemoKeyboardRoute
   '/demo/phone': typeof DemoPhoneRoute
   '/demo/rhythm': typeof DemoRhythmRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
+  '/demo/date': typeof DemoDateRoute
   '/demo/keyboard': typeof DemoKeyboardRoute
   '/demo/phone': typeof DemoPhoneRoute
   '/demo/rhythm': typeof DemoRhythmRoute
@@ -68,6 +76,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
+  '/demo/date': typeof DemoDateRoute
   '/demo/keyboard': typeof DemoKeyboardRoute
   '/demo/phone': typeof DemoPhoneRoute
   '/demo/rhythm': typeof DemoRhythmRoute
@@ -78,6 +87,7 @@ export interface FileRouteTypes {
     | '/'
     | '/login'
     | '/register'
+    | '/demo/date'
     | '/demo/keyboard'
     | '/demo/phone'
     | '/demo/rhythm'
@@ -86,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/login'
     | '/register'
+    | '/demo/date'
     | '/demo/keyboard'
     | '/demo/phone'
     | '/demo/rhythm'
@@ -94,6 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/login'
     | '/register'
+    | '/demo/date'
     | '/demo/keyboard'
     | '/demo/phone'
     | '/demo/rhythm'
@@ -103,6 +115,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LoginRoute: typeof LoginRoute
   RegisterRoute: typeof RegisterRoute
+  DemoDateRoute: typeof DemoDateRoute
   DemoKeyboardRoute: typeof DemoKeyboardRoute
   DemoPhoneRoute: typeof DemoPhoneRoute
   DemoRhythmRoute: typeof DemoRhythmRoute
@@ -152,6 +165,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DemoKeyboardRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/demo/date': {
+      id: '/demo/date'
+      path: '/demo/date'
+      fullPath: '/demo/date'
+      preLoaderRoute: typeof DemoDateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -159,6 +179,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LoginRoute: LoginRoute,
   RegisterRoute: RegisterRoute,
+  DemoDateRoute: DemoDateRoute,
   DemoKeyboardRoute: DemoKeyboardRoute,
   DemoPhoneRoute: DemoPhoneRoute,
   DemoRhythmRoute: DemoRhythmRoute,
