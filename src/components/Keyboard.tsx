@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './Keyboard.css';
 
-export default function Keyboard() {
-    const [inputText, setInputText] = useState('');
-    const [isCaps, setIsCaps] = useState(false);
-    const [isShift, setIsShift] = useState(false);
-    const [keyboardRows, setKeyboardRows] = useState([
+interface KeyboardProps {
+    value: string;
+    onChange: (value: string) => void;
+}
+
+export default function Keyboard({ value, onChange }: KeyboardProps) {
+    const initialKeyboardRows = [
                         ['~.`', '!.1', '@.2', '#.3', '$.4', '%.5', 
                         '^.6', '&.7', '*.8', '(.9', ').0', '_.-', '+.=', 
                         '<--'],
@@ -16,11 +18,27 @@ export default function Keyboard() {
                         ['Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm',
                         '<_,', '>_.', '?_/', 'Shift'],
                         ['Ctrl', 'Alt', '␣', 'Ctrl', 'Alt', '<', '>']
-                    ]);
+    ];
+    const [inputText, setInputText] = useState(value);
+    const [isCaps, setIsCaps] = useState(false);
+    const [isShift, setIsShift] = useState(false);
+    const [keyboardRows, setKeyboardRows] = useState(initialKeyboardRows);
+
+    useEffect(() => {
+        onChange(inputText);
+    }, [inputText, onChange]);
+
+    useEffect(() => {
+        setInputText(value);
+    }, [value]);
+
+    useEffect(() => {
+        renderKeyUpdates();
+    }, [inputText, isCaps, isShift]);
 
         const randomizeKeyboard = () => {
             const allKeys: { key: string; rowIndex: number }[] = [];
-            keyboardRows.forEach((row, rowIndex) => {
+            initialKeyboardRows.forEach((row, rowIndex) => {
                 row.forEach(key => {
                     allKeys.push({ key, rowIndex });
                 });
@@ -34,7 +52,7 @@ export default function Keyboard() {
             // Reconstruct rows with original sizes
             const randomized: string[][] = [];
             let keyIndex = 0;
-            keyboardRows.forEach((row) => {
+            initialKeyboardRows.forEach((row) => {
                 const newRow: string[] = [];
                 for (let i = 0; i < row.length; i++) {
                     newRow.push(allKeys[keyIndex].key);
@@ -53,11 +71,32 @@ export default function Keyboard() {
             : (<span>{keyvalue}</span>)
     }
 
+    const renderKeyUpdates = () => {
+        const keys = document.querySelectorAll('.key');
+        keys.forEach((key) => {
+            const firstSpanElement = key.querySelector('span:first-child');
+            if (firstSpanElement && firstSpanElement.parentElement) {
+                const keyText = (firstSpanElement as HTMLElement).innerText.toLowerCase();
+                const keyType = key.getAttribute('data-keytype');
+                firstSpanElement.parentElement.style.backgroundColor = (keyType === "shift" && isShift) || (keyType === "caps" && isCaps)
+                ? 'blue'
+                :  '#445760'
+
+                if (!['shift', 'alt', 'ctrl', 'enter', 'caps lock', 'tab']
+                    .includes(keyText)) {
+                    (firstSpanElement as HTMLElement).innerText = 
+                    ((isCaps && isShift) || (!isCaps && !isShift)) 
+                    ? keyText.toLowerCase() : keyText.toUpperCase();
+                }
+            }
+        })
+    }
+
     const handleKeyClick = (key : string) => {
         if (key === 'Enter') {
             handleEnterKey();
         } 
-        else if(key === "Ctrl" || key === "Alt" || key === '<' || key === '>')
+        else if(key === "Ctrl" || key === "Alt")
         {
         }else if (key === '␣') {
             handleSpaceKey();
@@ -71,8 +110,8 @@ export default function Keyboard() {
             handleTabKey();
         } else {
             handleRegularKey(key);
+            setKeyboardRows(randomizeKeyboard());
         }
-        setKeyboardRows(randomizeKeyboard());
     };
     const handleSpaceKey = () => {
         const newContent = inputText + '\u00A0';
@@ -85,23 +124,6 @@ export default function Keyboard() {
     const handleCapsLock = () => {
         const updatedCaps = !isCaps;
         setIsCaps(updatedCaps);
-        const keys = document.querySelectorAll('.key');
-        keys.forEach((key) => {
-            const firstSpanElement = key.querySelector('span:first-child');
-            if (firstSpanElement) {
-                const keyText = (firstSpanElement as HTMLElement).innerText.toLowerCase();
-                if (!['shift', 'alt', 'ctrl', 'enter', 'caps lock', 'tab']
-                    .includes(keyText)) {
-                    (firstSpanElement as HTMLElement).innerText = 
-                    ((updatedCaps && isShift) || (!updatedCaps && !isShift)) 
-                    ? keyText.toLowerCase() : keyText.toUpperCase();
-                }
-                if (keyText === 'caps lock' && firstSpanElement.parentElement) {
-                    firstSpanElement.parentElement.style.backgroundColor = 
-                    (updatedCaps) ? 'blue' : '#445760';
-                }
-            }   
-        });
     };
     const handleTabKey = () => {
         const newContent = inputText + '    ';
@@ -119,23 +141,6 @@ export default function Keyboard() {
     const handleShiftKey = () => {
         const updatedShift = !isShift;
         setIsShift(updatedShift);
-        const keys = document.querySelectorAll('.key');
-        keys.forEach((key) => {
-            const firstSpanElement = key.querySelector('span:first-child');
-            if (firstSpanElement) {
-                const keyText = (firstSpanElement as HTMLElement).innerText.toLowerCase();
-                if (!['shift', 'alt', 'ctrl', 'enter', 'caps lock', 'tab'].
-                    includes(keyText)) {
-                    (firstSpanElement as HTMLElement).innerText = 
-                    ((updatedShift && isCaps) || (!updatedShift && !isCaps)) 
-                    ? keyText.toLowerCase() : keyText.toUpperCase();
-                }
-                if (keyText === 'shift' && firstSpanElement.parentElement) {
-                    firstSpanElement.parentElement.style.backgroundColor = 
-                    (updatedShift) ? 'blue' : '#445760';
-                }
-            }
-        });
     }
 
     const handleRegularKey = (key : string) => {
@@ -160,21 +165,20 @@ export default function Keyboard() {
             ? key.toLowerCase() : key.toUpperCase();
             newContent = inputText + character;
         }
+        setIsShift(false);
         setInputText(newContent);
     };
 
     return (
-        <div className='keyboard'>
-            <div className="textcontainer">
-                <pre>{inputText}</pre>
-            </div>
+        <div className='keyboard' onMouseDown={(e) => e.preventDefault()}>
             <div className="keyboardcontainer">
                 <div className="container">
                     <div className="row">
                         {keyboardRows[0]
-                        .map((keyvalue) => 
+                        .map((keyvalue, index) => 
                         (
-                            <div key={keyvalue} className='key' 
+                            <div key={index} className='key' 
+                                 data-keytype={keyvalue === 'Caps Lock' ? 'caps' : keyvalue === 'Shift' ? 'shift' : ''}
                                  onClick={() => handleKeyClick(keyvalue)}>
                                 {parseKeyText(keyvalue)}
                             </div>
@@ -182,8 +186,9 @@ export default function Keyboard() {
                     </div>
                     <div className="row">
                         {keyboardRows[1]
-                        .map((keyvalue) => (
-                            <div key={keyvalue} className='key' 
+                        .map((keyvalue, index) => (
+                            <div key={index} className='key' 
+                                 data-keytype={keyvalue === 'Caps Lock' ? 'caps' : keyvalue === 'Shift' ? 'shift' : ''}
                                  onClick={() => handleKeyClick(keyvalue)}>
                                 {parseKeyText(keyvalue)}
                             </div>
@@ -191,8 +196,9 @@ export default function Keyboard() {
                     </div>
                     <div className="row">
                         {keyboardRows[2]
-                            .map((keyvalue) => (
-                            <div key={keyvalue} className='key' 
+                            .map((keyvalue, index) => (
+                            <div key={index} className='key' 
+                                 data-keytype={keyvalue === 'Caps Lock' ? 'caps' : keyvalue === 'Shift' ? 'shift' : ''}
                                  onClick={() => handleKeyClick(keyvalue)}>
                                 {parseKeyText(keyvalue)}
                             </div>
@@ -201,6 +207,7 @@ export default function Keyboard() {
                     <div className="row">
                         {keyboardRows[3].map((keyvalue, index) => (
                             <div key={index} className='key' 
+                                 data-keytype={keyvalue === 'Caps Lock' ? 'caps' : keyvalue === 'Shift' ? 'shift' : ''}
                                  onClick={() => handleKeyClick(keyvalue)}>
                                 {parseKeyText(keyvalue)}
                             </div>
@@ -209,7 +216,8 @@ export default function Keyboard() {
                     <div className="row">
                         {keyboardRows[4]
                             .map((keyvalue, index) => (
-                            <div key={index} className='key' 
+                            <div key={index} className='key'
+                            data-keytype={keyvalue === 'Caps Lock' ? 'caps' : keyvalue === 'Shift' ? 'shift' : ''} 
                             onClick={() => handleKeyClick(keyvalue)}>
                                 {parseKeyText(keyvalue)}
                             </div>
