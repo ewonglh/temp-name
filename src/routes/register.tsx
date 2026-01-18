@@ -143,7 +143,15 @@ function RegisterFlow() {
       registration.setSecurityQ2(securityQ2)
       registration.setSecurityA2(securityA2)
       registration.setCombo(rhythmCombo)
-      saveUserData({username : registration.username, time : finalTime, combo : rhythmCombo});
+      
+      // Save to leaderboard
+      saveUserData({ username, time: finalTime, combo: rhythmCombo })
+        .then(() => {
+          // Reload leaderboard data after saving
+          registration.addToLeaderboard({ username, time: finalTime, combo: rhythmCombo })
+        })
+        .catch(err => console.error('Failed to save user data:', err))
+      
       setComplete(true)
     } else {
       setStep(step + 1)

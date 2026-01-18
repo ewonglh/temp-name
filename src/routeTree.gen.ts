@@ -20,7 +20,6 @@ import { Route as RegisterRouteImport } from './routes/register'
 import { Route as PhoneNumberRouteImport } from './routes/phoneNumber'
 import { Route as MorseRouteImport } from './routes/morse'
 import { Route as LostwoodsRouteImport } from './routes/lostwoods'
-import { Route as LoginRouteImport } from './routes/login'
 import { Route as LiuRouteImport } from './routes/liu'
 import { Route as HintRouteImport } from './routes/hint'
 import { Route as CinqRouteImport } from './routes/cinq'
@@ -86,11 +85,6 @@ const LostwoodsRoute = LostwoodsRouteImport.update({
   path: '/lostwoods',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LoginRoute = LoginRouteImport.update({
-  id: '/login',
-  path: '/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const LiuRoute = LiuRouteImport.update({
   id: '/liu',
   path: '/liu',
@@ -142,7 +136,6 @@ export interface FileRoutesByFullPath {
   '/cinq': typeof CinqRoute
   '/hint': typeof HintRoute
   '/liu': typeof LiuRoute
-  '/login': typeof LoginRoute
   '/lostwoods': typeof LostwoodsRoute
   '/morse': typeof MorseRoute
   '/phoneNumber': typeof PhoneNumberRoute
@@ -165,7 +158,6 @@ export interface FileRoutesByTo {
   '/cinq': typeof CinqRoute
   '/hint': typeof HintRoute
   '/liu': typeof LiuRoute
-  '/login': typeof LoginRoute
   '/lostwoods': typeof LostwoodsRoute
   '/morse': typeof MorseRoute
   '/phoneNumber': typeof PhoneNumberRoute
@@ -189,7 +181,6 @@ export interface FileRoutesById {
   '/cinq': typeof CinqRoute
   '/hint': typeof HintRoute
   '/liu': typeof LiuRoute
-  '/login': typeof LoginRoute
   '/lostwoods': typeof LostwoodsRoute
   '/morse': typeof MorseRoute
   '/phoneNumber': typeof PhoneNumberRoute
@@ -214,7 +205,6 @@ export interface FileRouteTypes {
     | '/cinq'
     | '/hint'
     | '/liu'
-    | '/login'
     | '/lostwoods'
     | '/morse'
     | '/phoneNumber'
@@ -237,7 +227,6 @@ export interface FileRouteTypes {
     | '/cinq'
     | '/hint'
     | '/liu'
-    | '/login'
     | '/lostwoods'
     | '/morse'
     | '/phoneNumber'
@@ -260,7 +249,6 @@ export interface FileRouteTypes {
     | '/cinq'
     | '/hint'
     | '/liu'
-    | '/login'
     | '/lostwoods'
     | '/morse'
     | '/phoneNumber'
@@ -284,7 +272,6 @@ export interface RootRouteChildren {
   CinqRoute: typeof CinqRoute
   HintRoute: typeof HintRoute
   LiuRoute: typeof LiuRoute
-  LoginRoute: typeof LoginRoute
   LostwoodsRoute: typeof LostwoodsRoute
   MorseRoute: typeof MorseRoute
   PhoneNumberRoute: typeof PhoneNumberRoute
@@ -382,13 +369,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LostwoodsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/liu': {
       id: '/liu'
       path: '/liu'
@@ -460,7 +440,6 @@ const rootRouteChildren: RootRouteChildren = {
   CinqRoute: CinqRoute,
   HintRoute: HintRoute,
   LiuRoute: LiuRoute,
-  LoginRoute: LoginRoute,
   LostwoodsRoute: LostwoodsRoute,
   MorseRoute: MorseRoute,
   PhoneNumberRoute: PhoneNumberRoute,

@@ -51,13 +51,20 @@ const initialState: RegistrationState = {
   securityQ2: '',
   securityA2: '',
   combo: 0,
-  leaderboard: loadUserData()
+  leaderboard: []
 }
 
 const RegistrationContext = createContext<RegistrationContextType | null>(null)
 
 export function RegistrationProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState<RegistrationState>(initialState)
+
+  // Load leaderboard data on mount
+  useEffect(() => {
+    loadUserData().then(data => {
+      setState(prev => ({ ...prev, leaderboard: data }))
+    })
+  }, [])
 
   // Timer effect
   useEffect(() => {
