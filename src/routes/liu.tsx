@@ -10,6 +10,9 @@ function RouteComponent() {
     
   return (
     <Stack>
+        <TextField label = "verify you are human" inputProps={{style:{textAlign: 'center'}}}>
+                    
+                </TextField>
         <Grid
         container
         spacing={0}
@@ -147,7 +150,7 @@ function RouteComponent() {
             <Button
             
                 variant="contained"
-                href="/lostwoods"
+                href="/liu"
                 sx={{
                     height: "100%"
                 }}
