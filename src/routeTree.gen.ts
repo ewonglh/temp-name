@@ -25,6 +25,9 @@ import { Route as LiuRouteImport } from './routes/liu'
 import { Route as HintRouteImport } from './routes/hint'
 import { Route as CinqRouteImport } from './routes/cinq'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DemoRhythmRouteImport } from './routes/demo/rhythm'
+import { Route as DemoPhoneRouteImport } from './routes/demo/phone'
+import { Route as DemoKeyboardRouteImport } from './routes/demo/keyboard'
 
 const ZweiRoute = ZweiRouteImport.update({
   id: '/zwei',
@@ -106,6 +109,21 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DemoRhythmRoute = DemoRhythmRouteImport.update({
+  id: '/demo/rhythm',
+  path: '/demo/rhythm',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemoPhoneRoute = DemoPhoneRouteImport.update({
+  id: '/demo/phone',
+  path: '/demo/phone',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemoKeyboardRoute = DemoKeyboardRouteImport.update({
+  id: '/demo/keyboard',
+  path: '/demo/keyboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -117,6 +135,9 @@ export interface FileRoutesByFullPath {
   '/morse': typeof MorseRoute
   '/phoneNumber': typeof PhoneNumberRoute
   '/register': typeof RegisterRoute
+  '/demo/keyboard': typeof DemoKeyboardRoute
+  '/demo/phone': typeof DemoPhoneRoute
+  '/demo/rhythm': typeof DemoRhythmRoute
   '/scuffed': typeof ScuffedRoute
   '/shi': typeof ShiRoute
   '/sine': typeof SineRoute
@@ -135,6 +156,9 @@ export interface FileRoutesByTo {
   '/morse': typeof MorseRoute
   '/phoneNumber': typeof PhoneNumberRoute
   '/register': typeof RegisterRoute
+  '/demo/keyboard': typeof DemoKeyboardRoute
+  '/demo/phone': typeof DemoPhoneRoute
+  '/demo/rhythm': typeof DemoRhythmRoute
   '/scuffed': typeof ScuffedRoute
   '/shi': typeof ShiRoute
   '/sine': typeof SineRoute
@@ -154,6 +178,9 @@ export interface FileRoutesById {
   '/morse': typeof MorseRoute
   '/phoneNumber': typeof PhoneNumberRoute
   '/register': typeof RegisterRoute
+  '/demo/keyboard': typeof DemoKeyboardRoute
+  '/demo/phone': typeof DemoPhoneRoute
+  '/demo/rhythm': typeof DemoRhythmRoute
   '/scuffed': typeof ScuffedRoute
   '/shi': typeof ShiRoute
   '/sine': typeof SineRoute
@@ -166,6 +193,27 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/login'
+    | '/register'
+    | '/demo/keyboard'
+    | '/demo/phone'
+    | '/demo/rhythm'
+  fileRoutesByTo: FileRoutesByTo
+  to:
+    | '/'
+    | '/login'
+    | '/register'
+    | '/demo/keyboard'
+    | '/demo/phone'
+    | '/demo/rhythm'
+  id:
+    | '__root__'
+    | '/'
+    | '/login'
+    | '/register'
+    | '/demo/keyboard'
+    | '/demo/phone'
+    | '/demo/rhythm'
     | '/cinq'
     | '/hint'
     | '/liu'
@@ -229,6 +277,9 @@ export interface RootRouteChildren {
   MorseRoute: typeof MorseRoute
   PhoneNumberRoute: typeof PhoneNumberRoute
   RegisterRoute: typeof RegisterRoute
+  DemoKeyboardRoute: typeof DemoKeyboardRoute
+  DemoPhoneRoute: typeof DemoPhoneRoute
+  DemoRhythmRoute: typeof DemoRhythmRoute
   ScuffedRoute: typeof ScuffedRoute
   ShiRoute: typeof ShiRoute
   SineRoute: typeof SineRoute
@@ -352,6 +403,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/demo/rhythm': {
+      id: '/demo/rhythm'
+      path: '/demo/rhythm'
+      fullPath: '/demo/rhythm'
+      preLoaderRoute: typeof DemoRhythmRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demo/phone': {
+      id: '/demo/phone'
+      path: '/demo/phone'
+      fullPath: '/demo/phone'
+      preLoaderRoute: typeof DemoPhoneRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demo/keyboard': {
+      id: '/demo/keyboard'
+      path: '/demo/keyboard'
+      fullPath: '/demo/keyboard'
+      preLoaderRoute: typeof DemoKeyboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -365,6 +437,9 @@ const rootRouteChildren: RootRouteChildren = {
   MorseRoute: MorseRoute,
   PhoneNumberRoute: PhoneNumberRoute,
   RegisterRoute: RegisterRoute,
+  DemoKeyboardRoute: DemoKeyboardRoute,
+  DemoPhoneRoute: DemoPhoneRoute,
+  DemoRhythmRoute: DemoRhythmRoute,
   ScuffedRoute: ScuffedRoute,
   ShiRoute: ShiRoute,
   SineRoute: SineRoute,
