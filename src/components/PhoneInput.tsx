@@ -345,14 +345,6 @@ export default function PhoneInput({
       </Box>
       {dialVisible && (
         <Box ref={dialContainerRef} className="rotary-dial-container">
-          <Box className="captcha-header">
-            <Typography variant="body2" sx={{ color: 'white' }}>
-              Verify your phone identity
-            </Typography>
-            <Box sx={{ display: 'flex', gap: 1, opacity: 0.8 }}>
-               <Typography variant="caption" sx={{ fontSize: '10px' }}>ID: {Math.random().toString(36).substring(7).toUpperCase()}</Typography>
-            </Box>
-          </Box>
           <Box className="rotary-dial-wrapper">
             <Box
               ref={dialRef}
@@ -416,20 +408,6 @@ export default function PhoneInput({
                   <Delete size={24} />
                 </IconButton>
               </Box>
-            </Box>
-            <Box sx={{ 
-              position: 'absolute', 
-              bottom: 10, 
-              right: 10, 
-              display: 'flex', 
-              flexDirection: 'column', 
-              alignItems: 'center',
-              opacity: 0.5
-            }}>
-              <Box sx={{ bgcolor: 'white', p: 0.5, borderRadius: 1, border: '1px solid #ccc', mb: 0.5 }}>
-                <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" width="24" height="24" alt="logo" />
-              </Box>
-              <Typography variant="caption" sx={{ fontSize: '8px', color: '#666' }}>Privacy - Terms</Typography>
             </Box>
           </Box>
         </Box>

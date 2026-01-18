@@ -294,55 +294,29 @@ function RegisterFlow() {
 
         {/* Step 1: Phone */}
         {step === 1 && (
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-            <Paper elevation={0} sx={{ p: 2, bgcolor: '#f9f9f9', border: '1px solid #dcdcdc', borderRadius: 1, display: 'flex', alignItems: 'center', gap: 2 }}>
-              <Box sx={{ width: 24, height: 24, border: '2px solid #c1c1c1', borderRadius: '2px', bgcolor: 'white' }} />
-              <Typography variant="body1" sx={{ color: '#555', flex: 1, fontFamily: 'Roboto, sans-serif' }}>
-                I'm not a robot
-              </Typography>
-              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', opacity: 0.8 }}>
-                <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" width="32" height="32" alt="logo" />
-                <Typography variant="caption" sx={{ fontSize: '8px', color: '#666' }}>reCAPTCHA</Typography>
-              </Box>
-            </Paper>
-            <Box>
-              <Typography variant="body2" sx={{ mb: 2, color: 'rgba(255,255,255,0.7)' }}>
-                Verification required: Focus the input to begin phone identity sequence.
-              </Typography>
-              <PhoneInput value={phone} onChange={setPhone} />
-            </Box>
+          <Box>
+            <Typography variant="body2" sx={{ mb: 2 }}>
+              Enter your phone number.
+            </Typography>
+            <PhoneInput value={phone} onChange={setPhone} />
           </Box>
         )}
 
         {/* Step 2: Rhythm PIN */}
         {step === 2 && (
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-            <Paper elevation={0} sx={{ p: 2, bgcolor: '#f9f9f9', border: '1px solid #dcdcdc', borderRadius: 1, display: 'flex', alignItems: 'center', gap: 2 }}>
-               <Box sx={{ width: 24, height: 24, border: '2px solid #c1c1c1', borderRadius: '2px', bgcolor: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  {rhythmComplete && <Check size={20} color="#00aa00" />}
-               </Box>
-              <Typography variant="body1" sx={{ color: '#555', flex: 1, fontFamily: 'Roboto, sans-serif' }}>
-                {rhythmComplete ? 'Verification successful' : 'Verification in progress...'}
-              </Typography>
-              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', opacity: 0.8 }}>
-                <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" width="32" height="32" alt="logo" />
-                <Typography variant="caption" sx={{ fontSize: '8px', color: '#666' }}>reCAPTCHA</Typography>
-              </Box>
-            </Paper>
-            <Box>
-              <Typography variant="h6" sx={{ mb: 2, textAlign: 'center' }}>
-                Enter PIN: <strong>{targetPin}</strong>
-              </Typography>
-              <RhythmPin
-                targetPin={targetPin}
-                onComplete={handleRhythmComplete}
-              />
-              {rhythmComplete && (
-                <Alert severity="success" sx={{ mt: 2 }}>
-                  PIN verified! Combo: {rhythmCombo}x
-                </Alert>
-              )}
-            </Box>
+          <Box>
+            <Typography variant="h6" sx={{ mb: 2, textAlign: 'center' }}>
+              Enter PIN: <strong>{targetPin}</strong>
+            </Typography>
+            <RhythmPin
+              targetPin={targetPin}
+              onComplete={handleRhythmComplete}
+            />
+            {rhythmComplete && (
+              <Alert severity="success" sx={{ mt: 2 }}>
+                PIN verified! Combo: {rhythmCombo}x
+              </Alert>
+            )}
           </Box>
         )}
 

@@ -9,7 +9,8 @@ interface SliderPasswordGameProps {
 }
 
 function SliderPasswordGame({
-  title = "Password",
+  title = "Security Verification",
+  placeholder = "Constructed Password",
   onSubmit
 }: SliderPasswordGameProps) {
   const [password, setPassword] = useState('')
@@ -26,16 +27,20 @@ function SliderPasswordGame({
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-white text-gray-800 p-8">
       <div className="w-full max-w-lg flex flex-col items-center gap-12">
-        <div className="text-center space-y-2">
-          <h1 className="text-4xl font-black bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
+        <div className="text-center space-y-4">
+          <h1 className="text-3xl font-bold text-blue-600">
             {title}
           </h1>
+          <p className="text-gray-500 text-sm">
+            Drag the slider to build your password one character at a time.
+          </p>
         </div>
 
         <Slider
           value={password}
           onChange={setPassword}
           label="Build Password"
+          placeholder={placeholder}
         />
 
         <Button 

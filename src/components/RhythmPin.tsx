@@ -245,10 +245,10 @@ export default function RhythmPin({
           {combo > 0 && (
             <Box key={combo} className="rhythm-combo-display">
               <Typography component="span" className="combo-text">
-                VERIFYING...
+                COMBO:
               </Typography>
               <Typography component="span" className="combo-count">
-                {Math.min(100, combo * 10)}%
+                {combo}
               </Typography>
             </Box>
           )}

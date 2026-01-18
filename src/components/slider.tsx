@@ -6,11 +6,12 @@ interface SliderProps {
   value: string
   onChange: (value: string) => void
   label?: string
+  placeholder?: string
 }
 
 const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-export default function Slider({ value, onChange, label }: SliderProps) {
+export default function Slider({ value, onChange, label, placeholder }: SliderProps) {
   const [selectedLetter, setSelectedLetter] = useState(CHARS[0])
 
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,21 +33,38 @@ export default function Slider({ value, onChange, label }: SliderProps) {
     <Stack spacing={2} alignItems="center" className="slider-input-container">
       <TextField
         label={label}
+        placeholder={placeholder}
         value={value}
         fullWidth
         variant="outlined"
-        InputProps={{
+        inputProps={{
           readOnly: true,
+          inputMode: 'none',
         }}
         onKeyDown={(e) => e.preventDefault()}
         onPaste={(e) => e.preventDefault()}
         onDrop={(e) => e.preventDefault()}
         sx={{
+          '& .MuiInputBase-root': {
+            borderRadius: 3,
+            backgroundColor: 'rgba(0, 0, 0, 0.02)',
+            color: 'black'
+          },
           '& .MuiInputBase-input': {
             fontFamily: 'monospace',
             fontSize: '1.5rem',
             textAlign: 'center',
-            letterSpacing: '0.2em'
+            letterSpacing: '0.5em',
+            padding: '16px',
+            color: 'black'
+          },
+          '& .MuiInputLabel-root': {
+            textAlign: 'center',
+            width: '100%',
+            transformOrigin: 'center',
+          },
+          '& .MuiInputLabel-root.Mui-focused, & .MuiInputLabel-root.MuiInputLabel-shrink': {
+            transform: 'translate(0, -9px) scale(0.75)',
           }
         }}
       />
