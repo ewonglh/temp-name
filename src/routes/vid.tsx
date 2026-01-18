@@ -13,6 +13,7 @@ export const Route = createFileRoute('/vid')({
 
 import React, { Component } from 'react'
 import video from '/vid.mp4'
+import { Button } from '@mui/material';
 
 function App(){
 
@@ -22,6 +23,9 @@ function App(){
       <video width="750" height="500" controls autoPlay >
       <source src={video} type="video/mp4"/>
      </video>
+     <Button href = "/lostwoods">
+      go back
+     </Button>
       </div>
     );   
 }
