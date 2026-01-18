@@ -1,4 +1,4 @@
-import { Button, Stack } from '@mui/material'
+import { Stack } from '@mui/material'
 import { createFileRoute, redirect } from '@tanstack/react-router'
 import { validateAndConsumeAccess } from '../utils/routeProtection'
 import ProtectedButton from '../components/ProtectedButton'
