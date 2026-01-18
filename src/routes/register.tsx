@@ -230,30 +230,32 @@ function RegisterFlow() {
       </Stepper>
 
       {/* DEBUG SECTION */}
-      <Box sx={{ mb: 4, p: 2, border: '1px dashed #666', borderRadius: 2, bgcolor: 'rgba(255,255,255,0.05)' }}>
-        <Typography variant="caption" sx={{ display: 'block', mb: 1, opacity: 0.6 }}>DEBUG: SKIP TO STEPS</Typography>
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 2 }}>
-          <ButtonGroup size="small" variant="outlined" color="primary">
-            <Button onClick={() => setStep(0)}>0: Account</Button>
-            <Button onClick={() => setStep(1)}>1: Phone</Button>
-            <Button onClick={() => setStep(2)}>2: Rhythm (HIDDEN)</Button>
-            <Button onClick={() => setStep(3)}>3: Postcode</Button>
-            <Button onClick={() => setStep(4)}>4: Q1</Button>
-            <Button onClick={() => setStep(5)}>5: V1 (HIDDEN)</Button>
-            <Button onClick={() => setStep(6)}>6: Psh (HIDDEN)</Button>
-          </ButtonGroup>
+      {import.meta.env.DEV && (
+        <Box sx={{ mb: 4, p: 2, border: '1px dashed #666', borderRadius: 2, bgcolor: 'rgba(255,255,255,0.05)' }}>
+          <Typography variant="caption" sx={{ display: 'block', mb: 1, opacity: 0.6 }}>DEBUG: SKIP TO STEPS</Typography>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 2 }}>
+            <ButtonGroup size="small" variant="outlined" color="primary">
+              <Button onClick={() => setStep(0)}>0: Account</Button>
+              <Button onClick={() => setStep(1)}>1: Phone</Button>
+              <Button onClick={() => setStep(2)}>2: Rhythm (HIDDEN)</Button>
+              <Button onClick={() => setStep(3)}>3: Postcode</Button>
+              <Button onClick={() => setStep(4)}>4: Q1</Button>
+              <Button onClick={() => setStep(5)}>5: V1 (HIDDEN)</Button>
+              <Button onClick={() => setStep(6)}>6: Psh (HIDDEN)</Button>
+            </ButtonGroup>
+          </Box>
+          <Divider sx={{ mb: 2, opacity: 0.2 }} />
+          <Typography variant="caption" sx={{ display: 'block', mb: 1, opacity: 0.6 }}>DEBUG: SKIP TO ROUTES</Typography>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+            <ButtonGroup size="small" variant="outlined" color="secondary">
+              <Button onClick={() => skipToForest('/lostwoods')}>/lostwoods</Button>
+              <Button onClick={() => skipToForest('/zwei')}>/zwei</Button>
+              <Button onClick={() => skipToForest('/tres')}>/tres</Button>
+              <Button onClick={() => { registration.setIsRegistering(true); skipToForest('/youwin'); }}>/youwin (Finalize)</Button>
+            </ButtonGroup>
+          </Box>
         </Box>
-        <Divider sx={{ mb: 2, opacity: 0.2 }} />
-        <Typography variant="caption" sx={{ display: 'block', mb: 1, opacity: 0.6 }}>DEBUG: SKIP TO ROUTES</Typography>
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-          <ButtonGroup size="small" variant="outlined" color="secondary">
-            <Button onClick={() => skipToForest('/lostwoods')}>/lostwoods</Button>
-            <Button onClick={() => skipToForest('/zwei')}>/zwei</Button>
-            <Button onClick={() => skipToForest('/tres')}>/tres</Button>
-            <Button onClick={() => { registration.setIsRegistering(true); skipToForest('/youwin'); }}>/youwin (Finalize)</Button>
-          </ButtonGroup>
-        </Box>
-      </Box>
+      )}
 
       <Paper sx={{ maxWidth: 600, mx: 'auto', p: 4 }}>
         {errors.length > 0 && (
