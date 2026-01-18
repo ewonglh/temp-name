@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import { Box, Typography, TextField, IconButton } from '@mui/material'
-import { X, SendHorizontal } from 'lucide-react'
+import { Box, Typography, TextField } from '@mui/material'
+import { X } from 'lucide-react'
 import './SecurityQuestions.css'
 
 interface Word {

@@ -26,10 +26,6 @@ export default function Slider({ value, onChange, label }: SliderProps) {
     onChange('')
   }
 
-  const handleBackspace = () => {
-    onChange(value.slice(0, -1))
-  }
-
   const charIndex = CHARS.indexOf(selectedLetter)
 
   return (
