@@ -1,4 +1,4 @@
-import { Stack, Grid, Box, TextField } from '@mui/material';
+import { Stack, Grid, Box } from '@mui/material';
 import { createFileRoute, redirect } from '@tanstack/react-router'
 import { validateAndConsumeAccess } from '../utils/routeProtection'
 import ProtectedButton from '../components/ProtectedButton'
@@ -19,7 +19,7 @@ function RouteComponent() {
         <Grid
         container
         spacing={0}
-        sx={{
+        sx={{   
             minHeight: "10vh",
             minWidth: "100vw",
             justifyContent: "center",

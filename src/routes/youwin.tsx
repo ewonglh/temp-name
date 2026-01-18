@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Box, Typography } from '@mui/material'
 import { createFileRoute, redirect } from '@tanstack/react-router'
 import { Check } from 'lucide-react'
@@ -28,7 +28,7 @@ function RouteComponent() {
 
   useEffect(() => {
     if (isRegistering) {
-      const time = stopTimer()
+      stopTimer()
     }
   }, [isRegistering, username, combo, stopTimer, addToLeaderboard, setIsRegistering])
 

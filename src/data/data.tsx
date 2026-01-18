@@ -13,11 +13,25 @@ function parseCSV(csvString: string): User[] {
     
     for (const line of lines) {
         if (!line.trim()) continue;
-        const [time, username, combo] = line.split(',');
+        const [timeStr, username, comboStr] = line.split(',');
+        
+        const time = parseFloat(timeStr);
+        const combo = parseInt(comboStr);
+        const trimmedUsername = username?.trim();
+
+        // Filter out malformed or null entries
+        if (!trimmedUsername || 
+            trimmedUsername === 'null' || 
+            trimmedUsername === '' || 
+            isNaN(time) || 
+            isNaN(combo)) {
+            continue;
+        }
+
         users.push({
-            time: parseFloat(time),
-            username: username.trim(),
-            combo: parseInt(combo)
+            time,
+            username: trimmedUsername,
+            combo
         });
     }
     
