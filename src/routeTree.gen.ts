@@ -9,21 +9,99 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ZweiRouteImport } from './routes/zwei'
+import { Route as YouwinRouteImport } from './routes/youwin'
+import { Route as VidRouteImport } from './routes/vid'
+import { Route as TresRouteImport } from './routes/tres'
+import { Route as SineRouteImport } from './routes/sine'
+import { Route as ShiRouteImport } from './routes/shi'
+import { Route as ScuffedRouteImport } from './routes/scuffed'
 import { Route as RegisterRouteImport } from './routes/register'
+import { Route as PhoneNumberRouteImport } from './routes/phoneNumber'
+import { Route as MorseRouteImport } from './routes/morse'
+import { Route as LostwoodsRouteImport } from './routes/lostwoods'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as LiuRouteImport } from './routes/liu'
+import { Route as HintRouteImport } from './routes/hint'
+import { Route as CinqRouteImport } from './routes/cinq'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DemoRhythmRouteImport } from './routes/demo/rhythm'
 import { Route as DemoPhoneRouteImport } from './routes/demo/phone'
 import { Route as DemoKeyboardRouteImport } from './routes/demo/keyboard'
 
+const ZweiRoute = ZweiRouteImport.update({
+  id: '/zwei',
+  path: '/zwei',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const YouwinRoute = YouwinRouteImport.update({
+  id: '/youwin',
+  path: '/youwin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VidRoute = VidRouteImport.update({
+  id: '/vid',
+  path: '/vid',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TresRoute = TresRouteImport.update({
+  id: '/tres',
+  path: '/tres',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SineRoute = SineRouteImport.update({
+  id: '/sine',
+  path: '/sine',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShiRoute = ShiRouteImport.update({
+  id: '/shi',
+  path: '/shi',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ScuffedRoute = ScuffedRouteImport.update({
+  id: '/scuffed',
+  path: '/scuffed',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RegisterRoute = RegisterRouteImport.update({
   id: '/register',
   path: '/register',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PhoneNumberRoute = PhoneNumberRouteImport.update({
+  id: '/phoneNumber',
+  path: '/phoneNumber',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MorseRoute = MorseRouteImport.update({
+  id: '/morse',
+  path: '/morse',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LostwoodsRoute = LostwoodsRouteImport.update({
+  id: '/lostwoods',
+  path: '/lostwoods',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LiuRoute = LiuRouteImport.update({
+  id: '/liu',
+  path: '/liu',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HintRoute = HintRouteImport.update({
+  id: '/hint',
+  path: '/hint',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CinqRoute = CinqRouteImport.update({
+  id: '/cinq',
+  path: '/cinq',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -49,28 +127,67 @@ const DemoKeyboardRoute = DemoKeyboardRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/cinq': typeof CinqRoute
+  '/hint': typeof HintRoute
+  '/liu': typeof LiuRoute
   '/login': typeof LoginRoute
+  '/lostwoods': typeof LostwoodsRoute
+  '/morse': typeof MorseRoute
+  '/phoneNumber': typeof PhoneNumberRoute
   '/register': typeof RegisterRoute
   '/demo/keyboard': typeof DemoKeyboardRoute
   '/demo/phone': typeof DemoPhoneRoute
   '/demo/rhythm': typeof DemoRhythmRoute
+  '/scuffed': typeof ScuffedRoute
+  '/shi': typeof ShiRoute
+  '/sine': typeof SineRoute
+  '/tres': typeof TresRoute
+  '/vid': typeof VidRoute
+  '/youwin': typeof YouwinRoute
+  '/zwei': typeof ZweiRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/cinq': typeof CinqRoute
+  '/hint': typeof HintRoute
+  '/liu': typeof LiuRoute
   '/login': typeof LoginRoute
+  '/lostwoods': typeof LostwoodsRoute
+  '/morse': typeof MorseRoute
+  '/phoneNumber': typeof PhoneNumberRoute
   '/register': typeof RegisterRoute
   '/demo/keyboard': typeof DemoKeyboardRoute
   '/demo/phone': typeof DemoPhoneRoute
   '/demo/rhythm': typeof DemoRhythmRoute
+  '/scuffed': typeof ScuffedRoute
+  '/shi': typeof ShiRoute
+  '/sine': typeof SineRoute
+  '/tres': typeof TresRoute
+  '/vid': typeof VidRoute
+  '/youwin': typeof YouwinRoute
+  '/zwei': typeof ZweiRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/cinq': typeof CinqRoute
+  '/hint': typeof HintRoute
+  '/liu': typeof LiuRoute
   '/login': typeof LoginRoute
+  '/lostwoods': typeof LostwoodsRoute
+  '/morse': typeof MorseRoute
+  '/phoneNumber': typeof PhoneNumberRoute
   '/register': typeof RegisterRoute
   '/demo/keyboard': typeof DemoKeyboardRoute
   '/demo/phone': typeof DemoPhoneRoute
   '/demo/rhythm': typeof DemoRhythmRoute
+  '/scuffed': typeof ScuffedRoute
+  '/shi': typeof ShiRoute
+  '/sine': typeof SineRoute
+  '/tres': typeof TresRoute
+  '/vid': typeof VidRoute
+  '/youwin': typeof YouwinRoute
+  '/zwei': typeof ZweiRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -97,19 +214,132 @@ export interface FileRouteTypes {
     | '/demo/keyboard'
     | '/demo/phone'
     | '/demo/rhythm'
+    | '/cinq'
+    | '/hint'
+    | '/liu'
+    | '/login'
+    | '/lostwoods'
+    | '/morse'
+    | '/phoneNumber'
+    | '/register'
+    | '/scuffed'
+    | '/shi'
+    | '/sine'
+    | '/tres'
+    | '/vid'
+    | '/youwin'
+    | '/zwei'
+  fileRoutesByTo: FileRoutesByTo
+  to:
+    | '/'
+    | '/cinq'
+    | '/hint'
+    | '/liu'
+    | '/login'
+    | '/lostwoods'
+    | '/morse'
+    | '/phoneNumber'
+    | '/register'
+    | '/scuffed'
+    | '/shi'
+    | '/sine'
+    | '/tres'
+    | '/vid'
+    | '/youwin'
+    | '/zwei'
+  id:
+    | '__root__'
+    | '/'
+    | '/cinq'
+    | '/hint'
+    | '/liu'
+    | '/login'
+    | '/lostwoods'
+    | '/morse'
+    | '/phoneNumber'
+    | '/register'
+    | '/scuffed'
+    | '/shi'
+    | '/sine'
+    | '/tres'
+    | '/vid'
+    | '/youwin'
+    | '/zwei'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CinqRoute: typeof CinqRoute
+  HintRoute: typeof HintRoute
+  LiuRoute: typeof LiuRoute
   LoginRoute: typeof LoginRoute
+  LostwoodsRoute: typeof LostwoodsRoute
+  MorseRoute: typeof MorseRoute
+  PhoneNumberRoute: typeof PhoneNumberRoute
   RegisterRoute: typeof RegisterRoute
   DemoKeyboardRoute: typeof DemoKeyboardRoute
   DemoPhoneRoute: typeof DemoPhoneRoute
   DemoRhythmRoute: typeof DemoRhythmRoute
+  ScuffedRoute: typeof ScuffedRoute
+  ShiRoute: typeof ShiRoute
+  SineRoute: typeof SineRoute
+  TresRoute: typeof TresRoute
+  VidRoute: typeof VidRoute
+  YouwinRoute: typeof YouwinRoute
+  ZweiRoute: typeof ZweiRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/zwei': {
+      id: '/zwei'
+      path: '/zwei'
+      fullPath: '/zwei'
+      preLoaderRoute: typeof ZweiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/youwin': {
+      id: '/youwin'
+      path: '/youwin'
+      fullPath: '/youwin'
+      preLoaderRoute: typeof YouwinRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vid': {
+      id: '/vid'
+      path: '/vid'
+      fullPath: '/vid'
+      preLoaderRoute: typeof VidRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tres': {
+      id: '/tres'
+      path: '/tres'
+      fullPath: '/tres'
+      preLoaderRoute: typeof TresRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sine': {
+      id: '/sine'
+      path: '/sine'
+      fullPath: '/sine'
+      preLoaderRoute: typeof SineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shi': {
+      id: '/shi'
+      path: '/shi'
+      fullPath: '/shi'
+      preLoaderRoute: typeof ShiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/scuffed': {
+      id: '/scuffed'
+      path: '/scuffed'
+      fullPath: '/scuffed'
+      preLoaderRoute: typeof ScuffedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/register': {
       id: '/register'
       path: '/register'
@@ -117,11 +347,53 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RegisterRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/phoneNumber': {
+      id: '/phoneNumber'
+      path: '/phoneNumber'
+      fullPath: '/phoneNumber'
+      preLoaderRoute: typeof PhoneNumberRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/morse': {
+      id: '/morse'
+      path: '/morse'
+      fullPath: '/morse'
+      preLoaderRoute: typeof MorseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lostwoods': {
+      id: '/lostwoods'
+      path: '/lostwoods'
+      fullPath: '/lostwoods'
+      preLoaderRoute: typeof LostwoodsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/login': {
       id: '/login'
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/liu': {
+      id: '/liu'
+      path: '/liu'
+      fullPath: '/liu'
+      preLoaderRoute: typeof LiuRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hint': {
+      id: '/hint'
+      path: '/hint'
+      fullPath: '/hint'
+      preLoaderRoute: typeof HintRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cinq': {
+      id: '/cinq'
+      path: '/cinq'
+      fullPath: '/cinq'
+      preLoaderRoute: typeof CinqRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -157,11 +429,24 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CinqRoute: CinqRoute,
+  HintRoute: HintRoute,
+  LiuRoute: LiuRoute,
   LoginRoute: LoginRoute,
+  LostwoodsRoute: LostwoodsRoute,
+  MorseRoute: MorseRoute,
+  PhoneNumberRoute: PhoneNumberRoute,
   RegisterRoute: RegisterRoute,
   DemoKeyboardRoute: DemoKeyboardRoute,
   DemoPhoneRoute: DemoPhoneRoute,
   DemoRhythmRoute: DemoRhythmRoute,
+  ScuffedRoute: ScuffedRoute,
+  ShiRoute: ShiRoute,
+  SineRoute: SineRoute,
+  TresRoute: TresRoute,
+  VidRoute: VidRoute,
+  YouwinRoute: YouwinRoute,
+  ZweiRoute: ZweiRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
