@@ -1,7 +1,14 @@
 import { Button, Stack } from '@mui/material'
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, redirect } from '@tanstack/react-router'
+import { validateAndConsumeAccess } from '../utils/routeProtection'
+import ProtectedButton from '../components/ProtectedButton'
 
 export const Route = createFileRoute('/hint')({
+  beforeLoad: async () => {
+    if (!validateAndConsumeAccess('/hint')) {
+      throw redirect({ to: '/' })
+    }
+  },
   component: RouteComponent,
 })
 
@@ -17,11 +24,11 @@ function RouteComponent() {
           width: "100wh"
         }}
     >
-      <Button
-        href = "/lostwoods"
+      <ProtectedButton
+        targetPath="/lostwoods"
       >
          maybe check three a little closer
-      </Button>
+      </ProtectedButton>
     </Stack>
   )
 }

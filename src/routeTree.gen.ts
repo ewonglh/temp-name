@@ -13,13 +13,12 @@ import { Route as ZweiRouteImport } from './routes/zwei'
 import { Route as YouwinRouteImport } from './routes/youwin'
 import { Route as VidRouteImport } from './routes/vid'
 import { Route as TresRouteImport } from './routes/tres'
+import { Route as SliderPasswordRouteImport } from './routes/slider-password'
 import { Route as SineRouteImport } from './routes/sine'
 import { Route as ShiRouteImport } from './routes/shi'
-import { Route as ScuffedRouteImport } from './routes/scuffed'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as PshgameRouteImport } from './routes/pshgame'
-import { Route as LoginRouteImport } from './routes/login'
-import { Route as GameRouteImport } from './routes/game'
+import { Route as PostalCodeRouteImport } from './routes/postal-code'
 import { Route as PhoneNumberRouteImport } from './routes/phoneNumber'
 import { Route as MorseRouteImport } from './routes/morse'
 import { Route as LostwoodsRouteImport } from './routes/lostwoods'
@@ -53,6 +52,11 @@ const TresRoute = TresRouteImport.update({
   path: '/tres',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SliderPasswordRoute = SliderPasswordRouteImport.update({
+  id: '/slider-password',
+  path: '/slider-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SineRoute = SineRouteImport.update({
   id: '/sine',
   path: '/sine',
@@ -63,11 +67,6 @@ const ShiRoute = ShiRouteImport.update({
   path: '/shi',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ScuffedRoute = ScuffedRouteImport.update({
-  id: '/scuffed',
-  path: '/scuffed',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const RegisterRoute = RegisterRouteImport.update({
   id: '/register',
   path: '/register',
@@ -76,6 +75,13 @@ const RegisterRoute = RegisterRouteImport.update({
 const PshgameRoute = PshgameRouteImport.update({
   id: '/pshgame',
   path: '/pshgame',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PostalCodeRoute = PostalCodeRouteImport.update({
+  id: '/postal-code',
+  path: '/postal-code',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PhoneNumberRoute = PhoneNumberRouteImport.update({
   id: '/phoneNumber',
   path: '/phoneNumber',
@@ -91,17 +97,6 @@ const LostwoodsRoute = LostwoodsRouteImport.update({
   path: '/lostwoods',
   getParentRoute: () => rootRouteImport,
 } as any)
-<<<<<<< HEAD
-=======
-const LoginRoute = LoginRouteImport.update({
-  id: '/login',
-  path: '/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const GameRoute = GameRouteImport.update({
-  id: '/game',
-  path: '/game',
->>>>>>> 990d6cd6026e19d7688698216ac6d5232d40a3e6
 const LiuRoute = LiuRouteImport.update({
   id: '/liu',
   path: '/liu',
@@ -150,19 +145,18 @@ const DemoDateRoute = DemoDateRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/game': typeof GameRoute
-  '/login': typeof LoginRoute
-  '/pshgame': typeof PshgameRoute
   '/cinq': typeof CinqRoute
   '/hint': typeof HintRoute
   '/liu': typeof LiuRoute
   '/lostwoods': typeof LostwoodsRoute
   '/morse': typeof MorseRoute
   '/phoneNumber': typeof PhoneNumberRoute
+  '/postal-code': typeof PostalCodeRoute
+  '/pshgame': typeof PshgameRoute
   '/register': typeof RegisterRoute
-  '/scuffed': typeof ScuffedRoute
   '/shi': typeof ShiRoute
   '/sine': typeof SineRoute
+  '/slider-password': typeof SliderPasswordRoute
   '/tres': typeof TresRoute
   '/vid': typeof VidRoute
   '/youwin': typeof YouwinRoute
@@ -175,19 +169,18 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/game': typeof GameRoute
-  '/login': typeof LoginRoute
-  '/pshgame': typeof PshgameRoute
   '/cinq': typeof CinqRoute
   '/hint': typeof HintRoute
   '/liu': typeof LiuRoute
   '/lostwoods': typeof LostwoodsRoute
   '/morse': typeof MorseRoute
   '/phoneNumber': typeof PhoneNumberRoute
+  '/postal-code': typeof PostalCodeRoute
+  '/pshgame': typeof PshgameRoute
   '/register': typeof RegisterRoute
-  '/scuffed': typeof ScuffedRoute
   '/shi': typeof ShiRoute
   '/sine': typeof SineRoute
+  '/slider-password': typeof SliderPasswordRoute
   '/tres': typeof TresRoute
   '/vid': typeof VidRoute
   '/youwin': typeof YouwinRoute
@@ -201,19 +194,18 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/game': typeof GameRoute
-  '/login': typeof LoginRoute
-  '/pshgame': typeof PshgameRoute
   '/cinq': typeof CinqRoute
   '/hint': typeof HintRoute
   '/liu': typeof LiuRoute
   '/lostwoods': typeof LostwoodsRoute
   '/morse': typeof MorseRoute
   '/phoneNumber': typeof PhoneNumberRoute
+  '/postal-code': typeof PostalCodeRoute
+  '/pshgame': typeof PshgameRoute
   '/register': typeof RegisterRoute
-  '/scuffed': typeof ScuffedRoute
   '/shi': typeof ShiRoute
   '/sine': typeof SineRoute
+  '/slider-password': typeof SliderPasswordRoute
   '/tres': typeof TresRoute
   '/vid': typeof VidRoute
   '/youwin': typeof YouwinRoute
@@ -226,10 +218,6 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/game' | '/login' | '/pshgame' | '/register'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/game' | '/login' | '/pshgame' | '/register'
-  id: '__root__' | '/' | '/game' | '/login' | '/pshgame' | '/register'
   fullPaths:
     | '/'
     | '/cinq'
@@ -238,10 +226,12 @@ export interface FileRouteTypes {
     | '/lostwoods'
     | '/morse'
     | '/phoneNumber'
+    | '/postal-code'
+    | '/pshgame'
     | '/register'
-    | '/scuffed'
     | '/shi'
     | '/sine'
+    | '/slider-password'
     | '/tres'
     | '/vid'
     | '/youwin'
@@ -260,10 +250,12 @@ export interface FileRouteTypes {
     | '/lostwoods'
     | '/morse'
     | '/phoneNumber'
+    | '/postal-code'
+    | '/pshgame'
     | '/register'
-    | '/scuffed'
     | '/shi'
     | '/sine'
+    | '/slider-password'
     | '/tres'
     | '/vid'
     | '/youwin'
@@ -282,10 +274,12 @@ export interface FileRouteTypes {
     | '/lostwoods'
     | '/morse'
     | '/phoneNumber'
+    | '/postal-code'
+    | '/pshgame'
     | '/register'
-    | '/scuffed'
     | '/shi'
     | '/sine'
+    | '/slider-password'
     | '/tres'
     | '/vid'
     | '/youwin'
@@ -299,19 +293,18 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  GameRoute: typeof GameRoute
-  LoginRoute: typeof LoginRoute
-  PshgameRoute: typeof PshgameRoute
   CinqRoute: typeof CinqRoute
   HintRoute: typeof HintRoute
   LiuRoute: typeof LiuRoute
   LostwoodsRoute: typeof LostwoodsRoute
   MorseRoute: typeof MorseRoute
   PhoneNumberRoute: typeof PhoneNumberRoute
+  PostalCodeRoute: typeof PostalCodeRoute
+  PshgameRoute: typeof PshgameRoute
   RegisterRoute: typeof RegisterRoute
-  ScuffedRoute: typeof ScuffedRoute
   ShiRoute: typeof ShiRoute
   SineRoute: typeof SineRoute
+  SliderPasswordRoute: typeof SliderPasswordRoute
   TresRoute: typeof TresRoute
   VidRoute: typeof VidRoute
   YouwinRoute: typeof YouwinRoute
@@ -353,6 +346,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TresRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/slider-password': {
+      id: '/slider-password'
+      path: '/slider-password'
+      fullPath: '/slider-password'
+      preLoaderRoute: typeof SliderPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sine': {
       id: '/sine'
       path: '/sine'
@@ -367,13 +367,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShiRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/scuffed': {
-      id: '/scuffed'
-      path: '/scuffed'
-      fullPath: '/scuffed'
-      preLoaderRoute: typeof ScuffedRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/register': {
       id: '/register'
       path: '/register'
@@ -386,6 +379,15 @@ declare module '@tanstack/react-router' {
       path: '/pshgame'
       fullPath: '/pshgame'
       preLoaderRoute: typeof PshgameRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/postal-code': {
+      id: '/postal-code'
+      path: '/postal-code'
+      fullPath: '/postal-code'
+      preLoaderRoute: typeof PostalCodeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/phoneNumber': {
       id: '/phoneNumber'
       path: '/phoneNumber'
@@ -407,21 +409,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LostwoodsRouteImport
       parentRoute: typeof rootRouteImport
     }
-<<<<<<< HEAD
-=======
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/game': {
-      id: '/game'
-      path: '/game'
-      fullPath: '/game'
-      preLoaderRoute: typeof GameRouteImport
->>>>>>> 990d6cd6026e19d7688698216ac6d5232d40a3e6
     '/liu': {
       id: '/liu'
       path: '/liu'
@@ -490,19 +477,18 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  GameRoute: GameRoute,
-  LoginRoute: LoginRoute,
-  PshgameRoute: PshgameRoute,
   CinqRoute: CinqRoute,
   HintRoute: HintRoute,
   LiuRoute: LiuRoute,
   LostwoodsRoute: LostwoodsRoute,
   MorseRoute: MorseRoute,
   PhoneNumberRoute: PhoneNumberRoute,
+  PostalCodeRoute: PostalCodeRoute,
+  PshgameRoute: PshgameRoute,
   RegisterRoute: RegisterRoute,
-  ScuffedRoute: ScuffedRoute,
   ShiRoute: ShiRoute,
   SineRoute: SineRoute,
+  SliderPasswordRoute: SliderPasswordRoute,
   TresRoute: TresRoute,
   VidRoute: VidRoute,
   YouwinRoute: YouwinRoute,

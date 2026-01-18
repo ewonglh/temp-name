@@ -1,54 +1,104 @@
 import { useState } from 'react'
+import { TextField, Button, Stack } from '@mui/material'
 import './slider.css'
 
 interface SliderProps {
-  onLetterChange: (letter: string) => void
-  onLetterSelect?: () => void
+  value: string
+  onChange: (value: string) => void
+  label?: string
 }
 
-export default function Slider({ onLetterChange, onLetterSelect }: SliderProps) {
-  const [selectedLetter, setSelectedLetter] = useState('A')
+const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+export default function Slider({ value, onChange, label }: SliderProps) {
+  const [selectedLetter, setSelectedLetter] = useState(CHARS[0])
 
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(e.target.value)
-    const letter = String.fromCharCode(65 + value) // 65 is ASCII for 'A'
-    setSelectedLetter(letter)
-    onLetterChange(letter)
+    const val = parseInt(e.target.value)
+    setSelectedLetter(CHARS[val] || CHARS[0])
   }
 
-  return (
-    <div className="flex flex-col items-center gap-8 p-12 bg-black/5 rounded-3xl backdrop-blur-sm border border-black/5 shadow-2xl transition-all hover:bg-black/10">
-      <div className="w-[200px] flex flex-col items-center gap-16">
-        <div className="relative w-full flex items-center justify-center h-12 gap-4">
-          <span className="text-gray-500 font-bold text-xl">A</span>
-          <input
-            type="range"
-            min="0"
-            max="25"
-            step="1"
-            value={selectedLetter.charCodeAt(0) - 65}
-            onChange={handleSliderChange}
-            className="custom-slider"
-            style={{
-              width: '3%',
-              height: '10px',
-              // @ts-ignore - custom CSS property
-              '--value-percent': `${((selectedLetter.charCodeAt(0) - 65) / 25) * 100}%`
-            }}
-          />
-          <span className="text-gray-500 font-bold text-xl">Z</span>
-        </div>
+  const handleAddLetter = () => {
+    onChange(value + selectedLetter)
+  }
 
-        <button
-          onClick={onLetterSelect}
-          className="px-6 py-2 bg-white/80 hover:bg-white text-gray-900 rounded-xl font-bold shadow-sm transition-all active:scale-95 flex items-center gap-2"
-        >
-          <span>Enter '{selectedLetter}'</span>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-gray-500">
-            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.75-11.25a.75.75 0 00-1.5 0v2.5h-2.5a.75.75 0 000 1.5h2.5v2.5a.75.75 0 001.5 0v-2.5h2.5a.75.75 0 000-1.5h-2.5v-2.5z" clipRule="evenodd" />
-          </svg>
-        </button>
+  const handleClear = () => {
+    onChange('')
+  }
+
+  const handleBackspace = () => {
+    onChange(value.slice(0, -1))
+  }
+
+  const charIndex = CHARS.indexOf(selectedLetter)
+
+  return (
+    <Stack spacing={2} alignItems="center" className="slider-input-container">
+      <TextField
+        label={label}
+        value={value}
+        fullWidth
+        variant="outlined"
+        InputProps={{
+          readOnly: true,
+        }}
+        onKeyDown={(e) => e.preventDefault()}
+        onPaste={(e) => e.preventDefault()}
+        onDrop={(e) => e.preventDefault()}
+        sx={{
+          '& .MuiInputBase-input': {
+            fontFamily: 'monospace',
+            fontSize: '1.5rem',
+            textAlign: 'center',
+            letterSpacing: '0.2em'
+          }
+        }}
+      />
+      
+      <div className="flex flex-col items-center gap-4 p-8 bg-black/5 rounded-3xl backdrop-blur-sm border border-black/5 shadow-xl transition-all hover:bg-black/10 w-full">
+        <div className="flex flex-col items-center gap-8 w-full">
+          <div className="relative w-full flex items-center justify-center h-12 gap-4">
+            <span className="text-gray-500 font-bold text-xl">{CHARS[0]}</span>
+            <input
+              type="range"
+              min="0"
+              max={CHARS.length - 1}
+              step="1"
+              value={charIndex === -1 ? 0 : charIndex}
+              onChange={handleSliderChange}
+              onKeyDown={(e) => e.preventDefault()}
+              onPaste={(e) => e.preventDefault()}
+              onDrop={(e) => e.preventDefault()}
+              className="custom-slider"
+              style={{
+                width: '22px',
+                height: '20px',
+                // @ts-ignore - custom CSS property
+                '--value-percent': `${((charIndex === -1 ? 0 : charIndex) / (CHARS.length - 1)) * 100}%`
+              }}
+            />
+            <span className="text-gray-500 font-bold text-xl">{CHARS[CHARS.length - 1]}</span>
+          </div>
+
+          <Stack direction="row" spacing={2} flexWrap="wrap" justifyContent="center">
+            <Button
+              variant="contained"
+              onClick={handleAddLetter}
+              sx={{ bgcolor: 'white', color: 'black', '&:hover': { bgcolor: '#f0f0f0' }, borderRadius: 3, px: 4 }}
+            >
+              Enter '{selectedLetter === ' ' ? 'Space' : selectedLetter}'
+            </Button>
+            <Button
+              variant="outlined"
+              color="error"
+              onClick={handleClear}
+              sx={{ borderRadius: 3 }}
+            >
+              Clear
+            </Button>
+          </Stack>
+        </div>
       </div>
-    </div>
+    </Stack>
   )
 }

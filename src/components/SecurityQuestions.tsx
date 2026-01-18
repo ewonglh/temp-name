@@ -18,23 +18,23 @@ const DICTIONARY = [
   'What', 'is', 'your', "mother's", 'maiden', 'name', '?',
   'Where', 'did', 'you', 'go', 'to', 'high', 'school',
   'was', 'the', 'first', 'pet', 'had', 'When', 'Who', 'How',
-  'fav', 'color', 'childhood', 'hero', 'street', 'city',
-  'born', 'in', 'and', 'many', 'times',
-  'favorite', 'pizza', 'topping', 'that', 'should', 'be', 'illegal',
+  'favourite', 'color', 'childhood', 'hero', 'street', 'city',
+  'born', 'in', 'and', 'many', 'times', 'food', 'animal', 'book', 'song',
+  'pizza', 'topping', 'that', 'should', 'be', 'illegal',
   'least', 'favorite', 'country', 'official', 'crime', 'punishment'
 ]
 
 export default function SecurityQuestions({ onQuestionChange }: SecurityQuestionsProps) {
   const [selectedWords, setSelectedWords] = useState<string[]>([])
   const [isDragging, setIsDragging] = useState(false)
-
   // Initialize words with random positions
-  const [newWords] = useState(() => DICTIONARY.map((text, index) => ({
+  const randomizeWords = () => DICTIONARY.map((text, index) => ({
     id: `${text}-${index}-${Math.random()}`,
     text,
     x: 5 + Math.random() * 85, // 5% to 90%
     y: 5 + Math.random() * 85, // 5% to 90%
-  })))
+  }))
+  const [words, setWords] = useState<Word[]>(randomizeWords())
 
   const questionString = selectedWords.join(' ')
 
@@ -53,6 +53,7 @@ export default function SecurityQuestions({ onQuestionChange }: SecurityQuestion
 
   const handleDragEnd = () => {
     setIsDragging(false)
+    setWords(randomizeWords());
   }
 
   const handleDrop = (e: React.DragEvent) => {
@@ -117,7 +118,7 @@ export default function SecurityQuestions({ onQuestionChange }: SecurityQuestion
 
       {/* Scattered Words Layer */}
       <div className="security-game-overlay">
-        {newWords.map((word) => (
+        {words.map((word) => (
           <div
             key={word.id}
             draggable

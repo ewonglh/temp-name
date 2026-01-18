@@ -1,4 +1,3 @@
-import { createFileRoute } from '@tanstack/react-router'
 import React, { useRef, useEffect, useState } from 'react';
 import { Stack, TextField, Button, Typography } from '@mui/material';
 
@@ -42,9 +41,19 @@ const createTarget = (
   return newTarget;
 };
 
+interface AngryNumbersGameProps {
+  label?: string;
+  title?: string;
+  onSubmit?: (value: string) => void;
+  sx?: any;
+}
 
-
-const AngryNumbers: React.FC = () => {
+const AngryNumbersGame: React.FC<AngryNumbersGameProps> = ({
+  label = "Postal Code",
+  title = "Enter Your Postal Code",
+  onSubmit,
+  sx
+}) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number | null>(null);
 
@@ -133,13 +142,6 @@ const AngryNumbers: React.FC = () => {
         ball.current.y = canvas.height - ball.current.r;
         ball.current.vy *= -0.4;
         ball.current.vx *= 0.95;
-        
-
-        // if (Math.abs(ball.current.vy) < 0.5) {
-        //   ball.current.vx = 0;
-        //   ball.current.vy = 0;
-        //   runningRef.current = false;
-        // }
       }
 
       // Targets
@@ -240,7 +242,11 @@ const AngryNumbers: React.FC = () => {
   };
 
   const submit = () => {
-    alert(`Submitted value: ${score}`);
+    if (onSubmit) {
+      onSubmit(score);
+    } else {
+      alert(`Submitted value: ${score}`);
+    }
   };
 
   // ---------------- UI ----------------
@@ -252,12 +258,12 @@ const AngryNumbers: React.FC = () => {
         position: "relative",
         justifyContent: "center",
         alignItems: "center",
-        height: "100vh",
-        width: "100vw"
+        p: 2,
+        width: '100%',
+        ...sx
       }}
-
     >
-      <Typography variant="h6">Enter Your Postal Code</Typography>
+      <Typography variant="h6">{title}</Typography>
 
       <canvas
         ref={canvasRef}
@@ -270,15 +276,12 @@ const AngryNumbers: React.FC = () => {
       />
 
       <TextField
-        label="Postal Code"
+        label={label}
         value={score}
         InputProps={{ readOnly: true }}
       />
 
       <Stack direction="row" spacing={2}>
-        <Button variant="contained" color="success" onClick={submit}>
-          Submit
-        </Button>
         <Button variant="outlined" color="error" onClick={clear}>
           Clear
         </Button>
@@ -287,10 +290,4 @@ const AngryNumbers: React.FC = () => {
   );
 };
 
-
-
-export const Route = createFileRoute('/scuffed')({
-  component: AngryNumbers,
-})
-
-export default AngryNumbers;
+export default AngryNumbersGame;

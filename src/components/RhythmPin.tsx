@@ -232,15 +232,23 @@ export default function RhythmPin({
         <Box
           className="rhythm-game-overlay"
           ref={gameContainerRef}
-          onMouseDown={(e) => e.preventDefault()} // Update: Prevent focus loss
+          onMouseDown={(e) => e.preventDefault()}
         >
+          <Box className="captcha-header">
+            <Typography variant="body2" sx={{ color: 'white' }}>
+              Verify you are not a robot
+            </Typography>
+            <Box sx={{ display: 'flex', gap: 1, opacity: 0.8 }}>
+               <Typography variant="caption" sx={{ fontSize: '10px' }}>SEC_ID: {Math.random().toString(36).substring(7).toUpperCase()}</Typography>
+            </Box>
+          </Box>
           {combo > 0 && (
             <Box key={combo} className="rhythm-combo-display">
-              <Typography component="span" className="combo-count">
-                {combo}
-              </Typography>
               <Typography component="span" className="combo-text">
-                COMBO
+                VERIFYING...
+              </Typography>
+              <Typography component="span" className="combo-count">
+                {Math.min(100, combo * 10)}%
               </Typography>
             </Box>
           )}
@@ -280,6 +288,21 @@ export default function RhythmPin({
                 </Box>
               )
             })}
+          </Box>
+
+          <Box sx={{ 
+            position: 'absolute', 
+            bottom: 10, 
+            right: 10, 
+            display: 'flex', 
+            flexDirection: 'column', 
+            alignItems: 'center',
+            opacity: 0.5
+          }}>
+            <Box sx={{ bgcolor: 'white', p: 0.5, borderRadius: 1, border: '1px solid #ccc', mb: 0.5 }}>
+              <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" width="24" height="24" alt="logo" />
+            </Box>
+            <Typography variant="caption" sx={{ fontSize: '8px', color: '#666' }}>Privacy - Terms</Typography>
           </Box>
         </Box>
       )}

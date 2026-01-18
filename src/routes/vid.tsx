@@ -1,28 +1,33 @@
-import { createFileRoute } from '@tanstack/react-router'
-
-
+import { createFileRoute, redirect } from '@tanstack/react-router'
+import { validateAndConsumeAccess } from '../utils/routeProtection'
+import ProtectedButton from '../components/ProtectedButton'
 
 export const Route = createFileRoute('/vid')({
+  beforeLoad: async () => {
+    if (!validateAndConsumeAccess('/vid')) {
+      throw redirect({ to: '/' })
+    }
+  },
   component: App,
 })
 
-
-// Source - https://stackoverflow.com/a
-// Posted by Rahul Ahire, modified by community. See post 'Timeline' for change history
-// Retrieved 2026-01-17, License - CC BY-SA 4.0
-
-import React, { Component } from 'react'
 import video from '/vid.mp4'
 
 function App(){
-
     return (
-      <div className="App">
-      <p>hello</p>
-      <video width="750" height="500" controls autoPlay >
+      <>
+      <ProtectedButton
+        variant="contained"
+        targetPath="/lostwoods"
+        sx={{
+            height: "100%"
+        }}
+      > Back
+      </ProtectedButton>
+      <video style={{width:"50vw", height:"50vh", margin:"auto", display:"flex", justifyContent:"center", alignItems:"center"}} controls autoPlay >
       <source src={video} type="video/mp4"/>
-     </video>
-      </div>
+      </video>
+      </>
     );   
 }
 

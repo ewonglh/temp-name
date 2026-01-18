@@ -1,8 +1,14 @@
-import { Stack, Grid, Button, Box, TextField } from '@mui/material';
-import { createFileRoute } from '@tanstack/react-router'
-
+import { Stack, Grid, Box, TextField } from '@mui/material';
+import { createFileRoute, redirect } from '@tanstack/react-router'
+import { validateAndConsumeAccess } from '../utils/routeProtection'
+import ProtectedButton from '../components/ProtectedButton'
 
 export const Route = createFileRoute('/liu')({
+  beforeLoad: async () => {
+    if (!validateAndConsumeAccess('/liu')) {
+      throw redirect({ to: '/' })
+    }
+  },
   component: RouteComponent,
 })
 
@@ -35,16 +41,15 @@ function RouteComponent() {
                 backgroundColor:"#f0f0f0"
             }}
             >
-            <Button
-            
+            <ProtectedButton
                 variant="contained"
-                href="/lostwoods"
+                targetPath="/lostwoods"
                 sx={{
                     height: "100%"
                 }}
             >
                 1
-            </Button>
+            </ProtectedButton>
             </Grid>
                 
             <Grid size ={4} key={1}
@@ -57,16 +62,15 @@ function RouteComponent() {
                 backgroundColor:"#f0f0f0"
             }}
             >
-            <Button
-            
+            <ProtectedButton
                 variant="contained"
-                href="/lostwoods"
+                targetPath="/lostwoods"
                 sx={{
                     height: "100%"
                 }}
             >
                 2
-            </Button>
+            </ProtectedButton>
             </Grid>
 
             <Grid size ={4} key={2}
@@ -79,16 +83,15 @@ function RouteComponent() {
                 backgroundColor:"#f0f0f0"
             }}
             >
-            <Button
-            
+            <ProtectedButton
                 variant="contained"
-                href="/lostwoods"
+                targetPath="/lostwoods"
                 sx={{
                     height: "100%"
                 }}
             >
                 3
-            </Button>
+            </ProtectedButton>
             </Grid>
 
             <Grid size ={4} key={3}
@@ -101,16 +104,15 @@ function RouteComponent() {
                 backgroundColor:"#f0f0f0"
             }}
             >
-            <Button
-            
+            <ProtectedButton
                 variant="contained"
-                href="/lostwoods"
+                targetPath="/lostwoods"
                 sx={{
                     height: "100%"
                 }}
             >
                 4
-            </Button>
+            </ProtectedButton>
             </Grid>
 
             <Grid size ={4} key={4}
@@ -123,16 +125,15 @@ function RouteComponent() {
                 backgroundColor:"#f0f0f0"
             }}
             >
-            <Button
-            
+            <ProtectedButton
                 variant="contained"
-                href="/lostwoods"
+                targetPath="/lostwoods"
                 sx={{
                     height: "100%"
                 }}
             >
                 5
-            </Button>
+            </ProtectedButton>
             </Grid>
 
         
@@ -147,16 +148,15 @@ function RouteComponent() {
                 backgroundColor:"#f0f0f0"
             }}
             >
-            <Button
-            
+            <ProtectedButton
+                targetPath="/liu"
                 variant="contained"
-                href="/liu"
                 sx={{
                     height: "100%"
                 }}
             >
                 6
-            </Button>
+            </ProtectedButton>
             </Grid>
 
             <Grid size ={4} key={6}
@@ -169,16 +169,15 @@ function RouteComponent() {
                 backgroundColor:"#f0f0f0"
             }}
             >
-            <Button
-            
+            <ProtectedButton
                 variant="contained"
-                href="/lostwoods"
+                targetPath="/lostwoods"
                 sx={{
                     height: "100%"
                 }}
             >
                 7
-            </Button>
+            </ProtectedButton>
             </Grid>
 
             <Grid size ={4} key={7}
@@ -191,16 +190,16 @@ function RouteComponent() {
                 backgroundColor:"#f0f0f0"
             }}
             >
-            <Button
+            <ProtectedButton
             
                 variant="contained"
-                href="/lostwoods"
+                targetPath="/lostwoods"
                 sx={{
                     height: "100%"
                 }}
             >
                 8
-            </Button>
+            </ProtectedButton>
             </Grid>
 
             <Grid size ={4} key={8}
@@ -213,16 +212,15 @@ function RouteComponent() {
                 backgroundColor:"#f0f0f0"
             }}
             >
-            <Button
-            
+            <ProtectedButton
+                targetPath="/hint"
                 variant="contained"
-                href="/hint"
                 sx={{
                     height: "100%"
                 }}
             >
                 9
-            </Button>
+            </ProtectedButton>
             </Grid>
 
             

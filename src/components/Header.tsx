@@ -1,6 +1,5 @@
 import { Link } from '@tanstack/react-router'
 import { useState } from 'react'
-import { CircleUser, LogIn, Home, Menu, X, Gamepad2 } from 'lucide-react'
 import {
   AppBar,
   Box,
@@ -23,9 +22,9 @@ import {
   Calculator,
   ChevronLeft,
   Clock,
+  Gamepad2,
   Home,
   Keyboard as KeyboardIcon,
-  LogIn,
   Menu as MenuIcon,
   Music,
   Phone,
@@ -43,42 +42,23 @@ export default function Header() {
 
   const navItems = [
     { label: 'Home', path: '/', icon: <Home size={20} /> },
-    { label: 'Login', path: '/login', icon: <LogIn size={20} /> },
     { label: 'Register', path: '/register', icon: <UserPlus size={20} /> },
   ]
 
   const demoItems = [
     { label: 'Phone Demo', path: '/demo/phone', icon: <Phone size={20} /> },
     { label: 'Rhythm Demo', path: '/demo/rhythm', icon: <Music size={20} /> },
-    {
-      label: 'Keyboard Demo',
-      path: '/demo/keyboard',
-      icon: <KeyboardIcon size={20} />,
-    },
+    { label: 'Keyboard Demo', path: '/demo/keyboard', icon: <KeyboardIcon size={20} /> },
     { label: 'Date Demo', path: '/demo/date', icon: <Phone size={20} /> },
     { label: 'Security Demo', path: '/demo/security', icon: <UserPlus size={20} /> },
+    { label: 'Slider Password', path: '/slider-password', icon: <Gamepad2 size={20} /> },
+    { label: 'Angry Numbers', path: '/postal-code', icon: <Gamepad2 size={20} /> },
+    { label: 'Bouncy Game', path: '/pshgame', icon: <Gamepad2 size={20} /> },
   ]
 
   return (
     <>
-      <header className="p-4 flex items-center bg-gray-800 text-white shadow-lg">
-        <button
-          onClick={() => setIsOpen(true)}
-          className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
-          aria-label="Open menu"
-        >
-          <Menu size={24} />
-        </button>
-        <h1 className="ml-4 text-xl font-semibold">
-          <Link to="/">
-            Goofy Login
-          </Link>
-        </h1>
-      </header>
-
-      <aside
-        className={`fixed top-0 left-0 h-full w-80 bg-gray-900 text-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out flex flex-col ${isOpen ? 'translate-x-0' : '-translate-x-full'
-          }`}
+      {/* Main AppBar */}
       <AppBar
         position="fixed"
         sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
@@ -99,7 +79,7 @@ export default function Header() {
             component="div"
             sx={{ flexGrow: 1, fontWeight: 'bold' }}
           >
-            INPUT HELL
+            67-Factor Authentication
           </Typography>
           
           {timerRunning && (
@@ -130,46 +110,7 @@ export default function Header() {
         </Toolbar>
       </AppBar>
 
-          <Link
-            to="/register"
-            onClick={() => setIsOpen(false)}
-            className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-800 transition-colors mb-2"
-            activeProps={{
-              className:
-                'flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2',
-            }}
-          >
-            <CircleUser size={20} />
-            <span className="font-medium">Register</span>
-          </Link>
-
-          <Link
-            to="/game"
-            onClick={() => setIsOpen(false)}
-            className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-800 transition-colors mb-2"
-            activeProps={{
-              className:
-                'flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2',
-            }}
-          >
-            <Gamepad2 size={20} />
-            <span className="font-medium">Game</span>
-          </Link>
-
-          <Link
-            to="/pshgame"
-            onClick={() => setIsOpen(false)}
-            className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-800 transition-colors mb-2"
-            activeProps={{
-              className:
-                'flex items-center gap-3 p-3 rounded-lg bg-cyan-600 hover:bg-cyan-700 transition-colors mb-2',
-            }}
-          >
-            <Gamepad2 size={20} />
-            <span className="font-medium">Bouncy Security</span>
-          </Link>
-
-          {/* Demo Links Start */}
+      {/* Navigation Drawer */}
       <Drawer
         variant="temporary"
         anchor="left"
@@ -197,6 +138,8 @@ export default function Header() {
           </IconButton>
         </Box>
         <Divider />
+        
+        {/* Main Navigation Items */}
         <List sx={{ pt: 2 }}>
           {navItems.map((item) => (
             <ListItem
@@ -223,7 +166,10 @@ export default function Header() {
               </ListItemButton>
             </ListItem>
           ))}
+          
           <Divider sx={{ my: 2 }} />
+          
+          {/* Demo Items */}
           {demoItems.map((item) => (
             <ListItem
               key={item.label}
@@ -251,6 +197,7 @@ export default function Header() {
         </List>
       </Drawer>
 
+      {/* Calculator Dialog */}
       <Dialog
         open={isCalculatorOpen}
         onClose={() => setIsCalculatorOpen(false)}
@@ -286,6 +233,8 @@ export default function Header() {
           />
         </DialogContent>
       </Dialog>
+
+      {/* Toolbar spacer to push content below AppBar */}
       <Toolbar />
     </>
   )

@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from 'react'
-import { loadUserData } from '../data/Data'
+import { loadUserData } from '../data/data'
 
 interface LeaderboardEntry {
   username: string
@@ -18,12 +18,13 @@ interface RegistrationState {
   phone: string
   securityQ1: string
   securityA1: string
-  securityQ2: string
-  securityA2: string
   combo: number
   
   // Leaderboard
   leaderboard: LeaderboardEntry[]
+
+  // Flow control
+  isRegistering: boolean
 }
 
 interface RegistrationContextType extends RegistrationState {
@@ -33,10 +34,9 @@ interface RegistrationContextType extends RegistrationState {
   setPhone: (phone: string) => void
   setSecurityQ1: (q: string) => void
   setSecurityA1: (a: string) => void
-  setSecurityQ2: (q: string) => void
-  setSecurityA2: (a: string) => void
   setCombo: (combo: number) => void
   addToLeaderboard: (entry: LeaderboardEntry) => void
+  setIsRegistering: (val: boolean) => void
   resetRegistration: () => void
 }
 
@@ -48,10 +48,9 @@ const initialState: RegistrationState = {
   phone: '',
   securityQ1: '',
   securityA1: '',
-  securityQ2: '',
-  securityA2: '',
   combo: 0,
-  leaderboard: []
+  leaderboard: [],
+  isRegistering: false,
 }
 
 const RegistrationContext = createContext<RegistrationContextType | null>(null)
@@ -117,14 +116,6 @@ export function RegistrationProvider({ children }: { children: ReactNode }) {
     setState(prev => ({ ...prev, securityA1 }))
   }, [])
 
-  const setSecurityQ2 = useCallback((securityQ2: string) => {
-    setState(prev => ({ ...prev, securityQ2 }))
-  }, [])
-
-  const setSecurityA2 = useCallback((securityA2: string) => {
-    setState(prev => ({ ...prev, securityA2 }))
-  }, [])
-
   const setCombo = useCallback((combo: number) => {
     setState(prev => ({ ...prev, combo }))
   }, [])
@@ -134,6 +125,10 @@ export function RegistrationProvider({ children }: { children: ReactNode }) {
       ...prev,
       leaderboard: [...prev.leaderboard, entry].sort((a, b) => a.time - b.time)
     }))
+  }, [])
+
+  const setIsRegistering = useCallback((isRegistering: boolean) => {
+    setState(prev => ({ ...prev, isRegistering }))
   }, [])
 
   const resetRegistration = useCallback(() => {
@@ -152,10 +147,9 @@ export function RegistrationProvider({ children }: { children: ReactNode }) {
       setPhone,
       setSecurityQ1,
       setSecurityA1,
-      setSecurityQ2,
-      setSecurityA2,
       setCombo,
       addToLeaderboard,
+      setIsRegistering,
       resetRegistration,
     }}>
       {children}

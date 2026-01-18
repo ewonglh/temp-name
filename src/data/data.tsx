@@ -55,22 +55,3 @@ export async function loadUserData(): Promise<User[]> {
         return [];
     }
 }
-
-// Save new user data to localStorage
-export async function saveUserData(newUser: User): Promise<void> {
-    try {
-        // Load only user data from localStorage (not hardcoded data)
-        const stored = localStorage.getItem(DATA_KEY);
-        const existing = stored ? parseCSV(stored) : [];
-        existing.push(newUser);
-        
-        // Convert to CSV format
-        const csv = existing
-            .map((user: User) => `${user.time},${user.username},${user.combo}`)
-            .join('\n');
-        
-        localStorage.setItem(DATA_KEY, csv);
-    } catch (error) {
-        console.error('Error saving user data:', error);
-    }
-}

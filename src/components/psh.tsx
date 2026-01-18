@@ -4,7 +4,7 @@ import Matter from 'matter-js'
 export function usePshGame() {
   const sceneRef = useRef<HTMLDivElement>(null)
   const engineRef = useRef<Matter.Engine | null>(null)
-  const [password] = useState('CLAUDE')
+  const [password] = useState('NUSHACK')
   const [currentInput, setCurrentInput] = useState('')
   const [isWin, setIsWin] = useState(false)
   const cleanupRef = useRef<(() => void) | null>(null)

@@ -74,6 +74,18 @@ export default function TextFieldWithKeyboard(props: TextFieldProps) {
         onBlur={() => setKeyboardVisible(false)}
         onKeyDown={handleKeyDown}
         className="hidden-caret"
+        inputProps={{
+          autoComplete: 'off',
+          autoCorrect: 'off',
+          autoCapitalize: 'off',
+          spellCheck: 'false',
+          'data-form-type': 'other',
+          'data-lpignore': 'true', // LastPass
+          'data-1p-ignore': 'true', // 1Password
+        }}
+        InputProps={{
+          ...props.InputProps,
+        }}
       />
       {keyboardVisible && (
         <Box ref={keyboardRef} onMouseDown={handleKeyboardMouseDown}>

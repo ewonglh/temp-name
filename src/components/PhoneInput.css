@@ -24,21 +24,40 @@
   bottom: 0;
   left: 0;
   width: 100vw;
-  height: 30vh;
-  max-height: 30vh;
+  height: 35vh;
+  max-height: 35vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: flex-end;
-  background: linear-gradient(
-    to top,
-    rgba(20, 22, 28, 1) 0%,
-    rgba(32, 36, 44, 0.95) 100%
-  );
+  align-items: center;
+  background: #f9f9f9;
+  /* Classic CAPTCHA light background */
+  background-image:
+    radial-gradient(#d1d1d1 1px, transparent 1px),
+    linear-gradient(45deg, transparent 48%, #e0e0e0 49%, #e0e0e0 51%, transparent 52%);
+  background-size: 20px 20px, 100px 100px;
   z-index: 9999;
   box-sizing: border-box;
-  padding: 0.5vh 0.5vw;
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(10px);
+  padding: 10px;
+  box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.2);
+  border-top: 1px solid #dcdcdc;
+}
+
+.captcha-header {
+  width: 100%;
+  max-width: 400px;
+  background: #4a90e2;
+  color: white;
+  padding: 12px 20px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  border-radius: 4px 4px 0 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: -4px;
+  z-index: 10000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .rotary-dial-wrapper {
@@ -52,23 +71,20 @@
 /* Rotating Dial Element */
 .rotary-dial {
   position: relative;
-  /* Responsive sizing: fit height with aspect ratio 1:1 */
-  height: 98%;
+  height: 80%;
   width: auto;
   aspect-ratio: 1 / 1;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #2a2e36 0%, #373c45 100%);
-  border: 8px solid #1a1d24;
-  box-shadow:
-    inset 0 0 20px rgba(0, 0, 0, 0.5),
-    0 10px 30px rgba(0, 0, 0, 0.8);
+  border-radius: 12px;
+  /* Rectangular-ish CAPTCHA feel */
+  background: white;
+  border: 1px solid #dcdcdc;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: grab;
   user-select: none;
   touch-action: none;
-  /* Prevent scrolling while using dial */
 }
 
 .rotary-dial.dragging {
@@ -93,51 +109,46 @@
 
 /* Dial Numbers */
 .dial-number {
-  width: 18%;
-  height: 18%;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #445760 0%, #373c45 100%);
-  border: 2px solid #2a2e36;
-  color: #ffffff;
-  font-size: clamp(16px, 4cqw, 24px);
-  /* Responsive font based on container width */
-  font-weight: bold;
+  width: 15%;
+  height: 15%;
+  color: #333;
+  font-size: 24px;
+  font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease;
-  box-shadow:
-    0 4px 8px rgba(0, 0, 0, 0.3),
-    inset 0 2px 4px rgba(255, 255, 255, 0.1);
   user-select: none;
   pointer-events: none;
-  font-family:
-    system-ui,
-    -apple-system,
-    sans-serif;
+  font-family: 'Courier New', Courier, monospace;
+  /* Distorted mono font */
+  filter: blur(0.3px) contrast(1.2);
+}
+
+.dial-number:nth-child(odd) {
+  transform: translate(-50%, -50%) rotate(15deg) skewX(10deg);
+}
+
+.dial-number:nth-child(even) {
+  transform: translate(-50%, -50%) rotate(-10deg) skewY(5deg);
 }
 
 .dial-number.at-pointer {
-  background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
-  box-shadow:
-    0 0 25px rgba(74, 144, 226, 0.8),
-    0 6px 12px rgba(0, 0, 0, 0.4);
-  transform: translate(-50%, -50%) scale(1.1);
+  color: #1a73e8;
+  transform: translate(-50%, -50%) scale(1.5) rotate(0deg);
   z-index: 10;
-  border-color: #ffffff;
+  filter: none;
+  text-shadow: 0 0 8px rgba(26, 115, 232, 0.3);
 }
 
 /* Center Static Buttons */
 .dial-center {
   position: absolute;
-  width: 28%;
-  height: 28%;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #1a1d24 0%, #2a2e36 100%);
-  border: 4px solid #0f1114;
-  box-shadow:
-    inset 0 0 15px rgba(0, 0, 0, 0.8),
-    0 4px 8px rgba(0, 0, 0, 0.5);
+  width: 25%;
+  height: 25%;
+  background: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
