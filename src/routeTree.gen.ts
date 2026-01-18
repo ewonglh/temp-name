@@ -17,6 +17,9 @@ import { Route as SineRouteImport } from './routes/sine'
 import { Route as ShiRouteImport } from './routes/shi'
 import { Route as ScuffedRouteImport } from './routes/scuffed'
 import { Route as RegisterRouteImport } from './routes/register'
+import { Route as PshgameRouteImport } from './routes/pshgame'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as GameRouteImport } from './routes/game'
 import { Route as PhoneNumberRouteImport } from './routes/phoneNumber'
 import { Route as MorseRouteImport } from './routes/morse'
 import { Route as LostwoodsRouteImport } from './routes/lostwoods'
@@ -71,6 +74,9 @@ const RegisterRoute = RegisterRouteImport.update({
   path: '/register',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PshgameRoute = PshgameRouteImport.update({
+  id: '/pshgame',
+  path: '/pshgame',
 const PhoneNumberRoute = PhoneNumberRouteImport.update({
   id: '/phoneNumber',
   path: '/phoneNumber',
@@ -91,6 +97,9 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GameRoute = GameRouteImport.update({
+  id: '/game',
+  path: '/game',
 const LiuRoute = LiuRouteImport.update({
   id: '/liu',
   path: '/liu',
@@ -139,6 +148,9 @@ const DemoDateRoute = DemoDateRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/game': typeof GameRoute
+  '/login': typeof LoginRoute
+  '/pshgame': typeof PshgameRoute
   '/cinq': typeof CinqRoute
   '/hint': typeof HintRoute
   '/liu': typeof LiuRoute
@@ -162,6 +174,9 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/game': typeof GameRoute
+  '/login': typeof LoginRoute
+  '/pshgame': typeof PshgameRoute
   '/cinq': typeof CinqRoute
   '/hint': typeof HintRoute
   '/liu': typeof LiuRoute
@@ -186,6 +201,9 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/game': typeof GameRoute
+  '/login': typeof LoginRoute
+  '/pshgame': typeof PshgameRoute
   '/cinq': typeof CinqRoute
   '/hint': typeof HintRoute
   '/liu': typeof LiuRoute
@@ -209,6 +227,10 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
+  fullPaths: '/' | '/game' | '/login' | '/pshgame' | '/register'
+  fileRoutesByTo: FileRoutesByTo
+  to: '/' | '/game' | '/login' | '/pshgame' | '/register'
+  id: '__root__' | '/' | '/game' | '/login' | '/pshgame' | '/register'
   fullPaths:
     | '/'
     | '/cinq'
@@ -281,6 +303,9 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  GameRoute: typeof GameRoute
+  LoginRoute: typeof LoginRoute
+  PshgameRoute: typeof PshgameRoute
   CinqRoute: typeof CinqRoute
   HintRoute: typeof HintRoute
   LiuRoute: typeof LiuRoute
@@ -361,6 +386,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RegisterRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pshgame': {
+      id: '/pshgame'
+      path: '/pshgame'
+      fullPath: '/pshgame'
+      preLoaderRoute: typeof PshgameRouteImport
     '/phoneNumber': {
       id: '/phoneNumber'
       path: '/phoneNumber'
@@ -389,6 +419,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/game': {
+      id: '/game'
+      path: '/game'
+      fullPath: '/game'
+      preLoaderRoute: typeof GameRouteImport
     '/liu': {
       id: '/liu'
       path: '/liu'
@@ -457,6 +492,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  GameRoute: GameRoute,
+  LoginRoute: LoginRoute,
+  PshgameRoute: PshgameRoute,
   CinqRoute: CinqRoute,
   HintRoute: HintRoute,
   LiuRoute: LiuRoute,

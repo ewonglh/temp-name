@@ -9,6 +9,15 @@ export const Route = createFileRoute('/')({
 
 function App() {
   return (
+    <div className="text-center">
+      <header className="min-h-screen flex flex-col items-center justify-center bg-[#282c34] text-white text-[calc(10px+2vmin)]">
+        <Typewriter options={{
+          strings: ["most frustrating login page ever"],
+          autoStart: true,
+          loop: true
+        }} />
+      </header>
+    </div>
     <Box
       sx={{
         textAlign: 'center',
