@@ -12,6 +12,7 @@ export const Route = createFileRoute('/vid')({
 })
 
 import video from '/vid.mp4'
+import { Button } from '@mui/material';
 
 function App(){
     return (
@@ -26,8 +27,11 @@ function App(){
       </ProtectedButton>
       <video style={{width:"50vw", height:"50vh", margin:"auto", display:"flex", justifyContent:"center", alignItems:"center"}} controls autoPlay >
       <source src={video} type="video/mp4"/>
-      </video>
-      </>
+     </video>
+     <Button href = "/lostwoods">
+      go back
+     </Button>
+      </div>
     );   
 }
 
