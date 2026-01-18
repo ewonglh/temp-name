@@ -28,6 +28,7 @@ import { Route as CinqRouteImport } from './routes/cinq'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DemoSecurityRouteImport } from './routes/demo/security'
 import { Route as DemoRhythmRouteImport } from './routes/demo/rhythm'
+import { Route as DemoPostcodeRouteImport } from './routes/demo/postcode'
 import { Route as DemoPhoneRouteImport } from './routes/demo/phone'
 import { Route as DemoKeyboardRouteImport } from './routes/demo/keyboard'
 import { Route as DemoDateRouteImport } from './routes/demo/date'
@@ -127,6 +128,11 @@ const DemoRhythmRoute = DemoRhythmRouteImport.update({
   path: '/demo/rhythm',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DemoPostcodeRoute = DemoPostcodeRouteImport.update({
+  id: '/demo/postcode',
+  path: '/demo/postcode',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DemoPhoneRoute = DemoPhoneRouteImport.update({
   id: '/demo/phone',
   path: '/demo/phone',
@@ -164,6 +170,7 @@ export interface FileRoutesByFullPath {
   '/demo/date': typeof DemoDateRoute
   '/demo/keyboard': typeof DemoKeyboardRoute
   '/demo/phone': typeof DemoPhoneRoute
+  '/demo/postcode': typeof DemoPostcodeRoute
   '/demo/rhythm': typeof DemoRhythmRoute
   '/demo/security': typeof DemoSecurityRoute
 }
@@ -188,6 +195,7 @@ export interface FileRoutesByTo {
   '/demo/date': typeof DemoDateRoute
   '/demo/keyboard': typeof DemoKeyboardRoute
   '/demo/phone': typeof DemoPhoneRoute
+  '/demo/postcode': typeof DemoPostcodeRoute
   '/demo/rhythm': typeof DemoRhythmRoute
   '/demo/security': typeof DemoSecurityRoute
 }
@@ -213,6 +221,7 @@ export interface FileRoutesById {
   '/demo/date': typeof DemoDateRoute
   '/demo/keyboard': typeof DemoKeyboardRoute
   '/demo/phone': typeof DemoPhoneRoute
+  '/demo/postcode': typeof DemoPostcodeRoute
   '/demo/rhythm': typeof DemoRhythmRoute
   '/demo/security': typeof DemoSecurityRoute
 }
@@ -239,6 +248,7 @@ export interface FileRouteTypes {
     | '/demo/date'
     | '/demo/keyboard'
     | '/demo/phone'
+    | '/demo/postcode'
     | '/demo/rhythm'
     | '/demo/security'
   fileRoutesByTo: FileRoutesByTo
@@ -263,6 +273,7 @@ export interface FileRouteTypes {
     | '/demo/date'
     | '/demo/keyboard'
     | '/demo/phone'
+    | '/demo/postcode'
     | '/demo/rhythm'
     | '/demo/security'
   id:
@@ -287,6 +298,7 @@ export interface FileRouteTypes {
     | '/demo/date'
     | '/demo/keyboard'
     | '/demo/phone'
+    | '/demo/postcode'
     | '/demo/rhythm'
     | '/demo/security'
   fileRoutesById: FileRoutesById
@@ -312,6 +324,7 @@ export interface RootRouteChildren {
   DemoDateRoute: typeof DemoDateRoute
   DemoKeyboardRoute: typeof DemoKeyboardRoute
   DemoPhoneRoute: typeof DemoPhoneRoute
+  DemoPostcodeRoute: typeof DemoPostcodeRoute
   DemoRhythmRoute: typeof DemoRhythmRoute
   DemoSecurityRoute: typeof DemoSecurityRoute
 }
@@ -451,6 +464,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DemoRhythmRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/demo/postcode': {
+      id: '/demo/postcode'
+      path: '/demo/postcode'
+      fullPath: '/demo/postcode'
+      preLoaderRoute: typeof DemoPostcodeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/demo/phone': {
       id: '/demo/phone'
       path: '/demo/phone'
@@ -496,6 +516,7 @@ const rootRouteChildren: RootRouteChildren = {
   DemoDateRoute: DemoDateRoute,
   DemoKeyboardRoute: DemoKeyboardRoute,
   DemoPhoneRoute: DemoPhoneRoute,
+  DemoPostcodeRoute: DemoPostcodeRoute,
   DemoRhythmRoute: DemoRhythmRoute,
   DemoSecurityRoute: DemoSecurityRoute,
 }

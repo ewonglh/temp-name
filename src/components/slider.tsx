@@ -62,6 +62,7 @@ export default function Slider({ value, onChange, label, placeholder }: SliderPr
             textAlign: 'center',
             width: '100%',
             transformOrigin: 'center',
+            color: 'black'
           },
           '& .MuiInputLabel-root.Mui-focused, & .MuiInputLabel-root.MuiInputLabel-shrink': {
             transform: 'translate(0, -9px) scale(0.75)',

@@ -32,9 +32,10 @@ const TAKEN_USERNAMES = ['admin', 'user', 'test', 'demo']
 
 const steps = [
   'Account',
-  'Phone',
+  'Identity',
   'Postcode',
-  'Security Question',
+  'Security',
+  'Verification',
 ]
 
 function RegisterFlow() {
@@ -203,10 +204,10 @@ function RegisterFlow() {
   // Map internal step (0-8) to visible stepper steps (0-4)
   const getActiveStep = () => {
     if (step === 0) return 0 // Account
-    if (step === 1 || step === 2) return 1 // Phone + Rhythm
+    if (step === 1 || step === 2) return 1 // Identity (Phone + Rhythm)
     if (step === 3) return 2 // Postcode
-    if (step === 4 || step === 5) return 3 // Q1 + V1
-    if (step === 6) return 4 // Psh
+    if (step === 4 || step === 5) return 3 // Security (Q1 + V1)
+    if (step === 6) return 4 // Verification (Psh)
     return 0
   }
 

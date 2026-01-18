@@ -275,7 +275,7 @@ export default function RhythmPin({
                   sx={{
                     top: `${note.y}px`,
                     left: `${leftPercent}%`,
-                    transform: 'translateX(-50%)',
+                    transform: 'translateX(-50%) rotate(10deg) skewX(5deg)',
                     backgroundColor:
                       note.value === 'backspace' ? 'error.main' : undefined,
                   }}

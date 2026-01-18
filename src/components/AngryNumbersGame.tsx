@@ -51,6 +51,7 @@ interface AngryNumbersGameProps {
 const AngryNumbersGame: React.FC<AngryNumbersGameProps> = ({
   label = "Postal Code",
   title = "Enter Your Postal Code",
+  onSubmit,
   sx
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -60,6 +61,12 @@ const AngryNumbersGame: React.FC<AngryNumbersGameProps> = ({
   const draggingRef = useRef(false);
 
   const [score, setScore] = useState('');
+
+  useEffect(() => {
+    if (onSubmit) {
+      onSubmit(score);
+    }
+  }, [score, onSubmit]);
 
   const ball = useRef({
     x: 80,
