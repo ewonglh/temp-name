@@ -1,0 +1,187 @@
+.rhythm-pin-container {
+  position: relative;
+  width: 100%;
+}
+
+.rhythm-game-overlay {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30vh;
+  max-height: 30vh;
+  /* Game height */
+  background: linear-gradient(to top, #1a1a1a 90%, transparent);
+  z-index: 1300;
+  /* Above most MUI elements */
+  overflow: hidden;
+  touch-action: none;
+  pointer-events: auto;
+  border-top: 2px solid #333;
+}
+
+.rhythm-combo-display {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  z-index: 1400;
+  animation: combo-pop 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.combo-count {
+  font-size: 4rem;
+  font-weight: 900;
+  line-height: 1;
+  color: #00bcd4;
+  text-shadow:
+    0 0 10px rgba(0, 188, 212, 0.8),
+    0 0 20px rgba(0, 188, 212, 0.4);
+  font-family: 'Inter', sans-serif;
+}
+
+.combo-text {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.2rem;
+  color: #888;
+  margin-top: -5px;
+}
+
+@keyframes combo-pop {
+  0% {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0;
+  }
+
+  70% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+.rhythm-lane-container {
+  display: grid;
+  grid-template-columns: repeat(11, 1fr);
+  align-items: flex-end;
+  justify-items: center;
+  height: 100%;
+  padding-bottom: 20px;
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.rhythm-target-wrapper {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.rhythm-target-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #555;
+  background: #000;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  user-select: none;
+  position: relative;
+  z-index: 2;
+}
+
+.rhythm-target-btn:active {
+  transform: scale(0.95);
+  background: #222;
+}
+
+.rhythm-target-btn.hit {
+  border-color: #00ff00;
+  box-shadow: 0 0 15px #00ff00;
+  animation: pulse-green 0.2s ease-out;
+}
+
+.rhythm-target-btn.miss {
+  border-color: #ff0000;
+  box-shadow: 0 0 15px #ff0000;
+  animation: shake-red 0.3s ease-in-out;
+}
+
+.rhythm-note {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #00bcd4;
+  /* Cyan notes */
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  z-index: 1;
+  pointer-events: none;
+  /* Let clicks pass through to targets if overlapped? actually we click targets */
+  box-shadow: 0 0 10px rgba(0, 188, 212, 0.6);
+}
+
+.backspace-note {
+  background: #ef5350;
+  box-shadow: 0 0 10px rgba(239, 83, 80, 0.6);
+}
+
+@keyframes pulse-green {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes shake-red {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-5px);
+  }
+
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+/* Hide native input caret to emphasize game-only input */
+.hidden-caret .MuiInputBase-input {
+  caret-color: transparent;
+  cursor: default;
+}
+
+.hidden-caret .MuiInputBase-input::selection {
+  background: transparent;
+}

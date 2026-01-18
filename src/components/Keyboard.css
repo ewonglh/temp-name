@@ -1,98 +1,155 @@
 /* keyboard.css */
 .keyboard {
-    display: flex;
-    height: 100vh;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
     width: 100%;
-    height: 100%;
-}
-
-.textcontainer {
-    width: 90%;
-    height: 100px;
-    border: 1px solid rgba(0,0,0,0.25);
-    overflow: auto;
-    border-radius: 4px;
-}
-
-.textcontainer pre{
-    text-align: left;
-    display: block;
-    width: calc(100% - 40px);
-    height: calc(100% - 40px);
-    margin: 0;
-    padding: 20px;
-    font-size: 20px;
+    height: 30vh;
+    max-height: 30vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    background: linear-gradient(to top,
+            rgba(20, 22, 28, 1) 0%,
+            rgba(32, 36, 44, 0.95) 100%);
+    z-index: 9999;
+    box-sizing: border-box;
+    padding: 0.5vh 0.5vw;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
 }
 
 .keyboardcontainer {
-    width: 90%;
+    width: 100%;
+    height: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    margin-top: 15px;
+    align-items: center;
 }
 
 .container {
-    padding: 20px 20px;
+    width: 100%;
+    height: 100%;
     display: flex;
-    flex-direction: column;
-    max-width: 980px;
     justify-content: center;
     align-items: center;
-    border-radius: 7px;
-    background: #202124;
+    flex-direction: column;
+    gap: 0.5vh;
 }
 
 .row {
     display: flex;
     width: 100%;
+    flex: 1;
+    gap: 0.4%;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
 }
 
 .key {
+    flex: 1;
     display: flex;
-    width: 60px;
-    height: 60px;
-    margin: 5px;
-    justify-content: center;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    background-color: #445760;
-    border-radius: 4px;
-    color: #ffffff;
-    font-size: 16px;
+    background: rgba(55, 60, 69, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: #e2e8f0;
+    font-family:
+        system-ui,
+        -apple-system,
+        sans-serif;
+    font-size: clamp(10px, 1.8vh, 18px);
+    font-weight: 500;
+    line-height: 1.1;
     cursor: pointer;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    transition: background-color ease-in-out 0.15s;
+    user-select: none;
+    transition: all 0.1s ease;
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
+    min-width: 0;
+    /* Allows text overflow handling if needed */
+    padding: 0;
+    position: relative;
+    overflow: hidden;
 }
 
-.key:hover{
-    background-color: #3c4d56;
+.key:hover {
+    background: rgba(70, 76, 87, 0.8);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 0 rgba(0, 0, 0, 0.2);
 }
 
-.row:first-child .key:first-child{
-    width: 40px;
+.key:active,
+.key.active {
+    transform: translateY(1px);
+    box-shadow: none;
+    background: rgba(80, 160, 255, 0.2);
+    border-color: rgba(80, 160, 255, 0.4);
 }
 
-.row:first-child .key:last-child{
-    width: 80px;
+/* Specific sizing overrides using flex-grow */
+.key-space {
+    flex: 6;
+    /* Make spacebar significantly wider */
 }
 
-.row:nth-child(3) .key:first-child{
-    width: 95px;
+/* Special styling for functional keys */
+.key-caps,
+.key-shift,
+.key-enter,
+.key-delete,
+.key-meta {
+    flex: 1.5;
+    /* Slightly wider than standard keys */
+    font-size: clamp(9px, 1.4vh, 14px);
+    font-weight: 600;
+    text-transform: uppercase;
 }
-.row:nth-child(3) .key:last-child{
-    width: 95px;
+
+/* Key Colors */
+.key-meta {
+    background: rgba(45, 50, 58, 0.8);
 }
-.row:nth-child(4) .key:first-child{
-    width: 130px;
+
+.key-delete {
+    background: rgba(185, 28, 28, 0.4);
 }
-.row:nth-child(4) .key:last-child{
-    width: 130px;
+
+.key-enter {
+    background: rgba(22, 163, 74, 0.4);
 }
-.row:nth-child(5) .key:nth-child(3){
-    width: 550px;
+
+.key-caps {
+    background: rgba(20, 80, 160, 0.4);
+}
+
+.key-shift {
+    background: rgba(120, 50, 180, 0.4);
+}
+
+/* Active/Active States */
+.key-delete:active,
+.key-delete.active {
+    background: rgba(220, 38, 38, 0.7);
+}
+
+.key-enter:active,
+.key-enter.active {
+    background: rgba(34, 197, 94, 0.7);
+}
+
+.key-caps:active,
+.key-caps.active {
+    background: rgba(59, 130, 246, 0.7);
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
+}
+
+.key-shift:active,
+.key-shift.active {
+    background: rgba(168, 85, 247, 0.7);
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.4);
 }

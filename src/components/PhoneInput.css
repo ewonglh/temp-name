@@ -1,0 +1,175 @@
+/* PhoneInput.css */
+
+.phone-input-wrapper {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.phone-number-input {
+  flex: 1;
+}
+
+.country-selector {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.country-selector .MuiSelect-select {
+  color: #ffffff !important;
+}
+
+/* Rotary Dial Container - Fixed at bottom */
+.rotary-dial-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 30vh;
+  max-height: 30vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  background: linear-gradient(
+    to top,
+    rgba(20, 22, 28, 1) 0%,
+    rgba(32, 36, 44, 0.95) 100%
+  );
+  z-index: 9999;
+  box-sizing: border-box;
+  padding: 0.5vh 0.5vw;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+.rotary-dial-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+/* Rotating Dial Element */
+.rotary-dial {
+  position: relative;
+  /* Responsive sizing: fit height with aspect ratio 1:1 */
+  height: 98%;
+  width: auto;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2a2e36 0%, #373c45 100%);
+  border: 8px solid #1a1d24;
+  box-shadow:
+    inset 0 0 20px rgba(0, 0, 0, 0.5),
+    0 10px 30px rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  /* Prevent scrolling while using dial */
+}
+
+.rotary-dial.dragging {
+  cursor: grabbing;
+  box-shadow:
+    inset 0 0 20px rgba(0, 0, 0, 0.5),
+    0 15px 40px rgba(0, 0, 0, 0.9);
+}
+
+/* Dial Pointer Triangle */
+.dial-pointer {
+  top: 50%;
+  right: -5px;
+  transform: translateX(1000%) scaleX(-1);
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-left: 25px solid #ffffff;
+  z-index: 1001;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+  pointer-events: none;
+}
+
+/* Dial Numbers */
+.dial-number {
+  width: 18%;
+  height: 18%;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #445760 0%, #373c45 100%);
+  border: 2px solid #2a2e36;
+  color: #ffffff;
+  font-size: clamp(16px, 4cqw, 24px);
+  /* Responsive font based on container width */
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.1);
+  user-select: none;
+  pointer-events: none;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+}
+
+.dial-number.at-pointer {
+  background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+  box-shadow:
+    0 0 25px rgba(74, 144, 226, 0.8),
+    0 6px 12px rgba(0, 0, 0, 0.4);
+  transform: translate(-50%, -50%) scale(1.1);
+  z-index: 10;
+  border-color: #ffffff;
+}
+
+/* Center Static Buttons */
+.dial-center {
+  position: absolute;
+  width: 28%;
+  height: 28%;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1a1d24 0%, #2a2e36 100%);
+  border: 4px solid #0f1114;
+  box-shadow:
+    inset 0 0 15px rgba(0, 0, 0, 0.8),
+    0 4px 8px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+/* Delete Button */
+.dial-delete {
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #c0392b 0%, #a93226 100%);
+  border: 2px solid #8b2415;
+  color: #ffffff;
+  font-size: clamp(20px, 5cqw, 28px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.4),
+    inset 0 2px 4px rgba(255, 255, 255, 0.1);
+  user-select: none;
+}
+
+.dial-delete:hover {
+  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+  transform: scale(1.05);
+}
+
+.dial-delete:active {
+  background: linear-gradient(135deg, #a93226 0%, #8b2415 100%);
+  transform: scale(0.95);
+}

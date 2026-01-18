@@ -1,0 +1,101 @@
+/* SecurityQuestions.css */
+
+.security-game-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9998;
+}
+
+.scattered-word {
+    position: absolute;
+    pointer-events: auto;
+    cursor: grab;
+    padding: 8px 16px;
+    background: rgba(30, 41, 59, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    color: #e2e8f0;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    user-select: none;
+    backdrop-filter: blur(4px);
+    transition: transform 0.1s, box-shadow 0.2s;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.scattered-word:hover {
+    background: rgba(51, 65, 85, 0.9);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.scattered-word:active {
+    cursor: grabbing;
+    transform: scale(0.95);
+}
+
+.drop-zone-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: rgba(15, 23, 42, 0.6);
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    min-height: 120px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 8px;
+    transition: border-color 0.3s;
+}
+
+.drop-zone-active {
+    border-color: #3b82f6;
+    background: rgba(59, 130, 246, 0.1);
+}
+
+.selected-word {
+    padding: 6px 14px;
+    background: #2563eb;
+    color: white;
+    border-radius: 16px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popIn {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.remove-word {
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.remove-word:hover {
+    opacity: 1;
+}
+
+.placeholder-text {
+    color: rgba(255, 255, 255, 0.3);
+    font-style: italic;
+    width: 100%;
+    text-align: center;
+    align-self: center;
+}
