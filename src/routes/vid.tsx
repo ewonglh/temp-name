@@ -31,7 +31,7 @@ function App(){
      <Button href = "/lostwoods">
       go back
      </Button>
-      </div>
+     </>
     );   
 }
 
