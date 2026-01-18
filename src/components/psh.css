@@ -1,0 +1,248 @@
+/* Core Layout & Theme - Light/Clean Edition */
+.psh-container {
+    min-height: 100vh;
+    background: #f8f9fa;
+    color: #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2.5rem;
+    font-family: 'Outfit', 'Inter', system-ui, sans-serif;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Background Effects - Clean Grid */
+.psh-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+}
+
+.psh-glow-primary {
+    display: none;
+    /* Remove neon glows */
+}
+
+/* Header & Title */
+.psh-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    z-index: 10;
+}
+
+.psh-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    color: #111;
+    filter: none;
+}
+
+.psh-subtitle {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.4em;
+    color: #666;
+    font-weight: 600;
+}
+
+/* Status Cards - Minimalist */
+.psh-status-grid {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.psh-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.psh-card-active {
+    border-color: #3b82f6;
+    box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.2);
+}
+
+.psh-card-alert {
+    border-color: #ef4444;
+}
+
+.psh-card-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #9ca3af;
+    margin-bottom: 0.25rem;
+    display: block;
+}
+
+.psh-card-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+}
+
+.psh-value-target {
+    color: #ef4444;
+}
+
+.psh-value-buffer {
+    color: #1f2937;
+}
+
+.psh-value-win {
+    color: #10b981;
+}
+
+/* Game Stage */
+.psh-stage-wrapper {
+    position: relative;
+    padding: 12px;
+    background: #ffffff;
+    border-radius: 24px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.psh-canvas-container {
+    width: 800px;
+    height: 600px;
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #f3f4f6;
+}
+
+canvas {
+    cursor: default !important;
+}
+
+/* UI Elements */
+.psh-win-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #10b981;
+    color: #fff;
+    padding: 1.5rem 3rem;
+    font-weight: 800;
+    font-size: 1.5rem;
+    border-radius: 100px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    animation: psh-win-reveal 0.5s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+    box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+    z-index: 20;
+}
+
+/* Footer Controls */
+.psh-footer {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.psh-control-btn {
+    background: #1f2937;
+    border: none;
+    color: #ffffff;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.psh-control-btn:hover {
+    background: #000;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Animations */
+@keyframes psh-win-reveal {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -45%) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.animate-pulse-slow {
+    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* Add to ../components/psh.css */
+/* Add to ../components/psh.css */
+
+.psh-protocol-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-family: monospace;
+    font-size: 0.75rem;
+    opacity: 0.8;
+}
+
+.psh-protocol-item {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.psh-protocol-tag {
+    color: var(--psh-primary, #000000);
+    /* Or your specific accent color */
+    font-weight: bold;
+    letter-spacing: 0.05em;
+}
+
+.psh-protocol-text {
+    color: #484848;
+    text-transform: uppercase;
+}

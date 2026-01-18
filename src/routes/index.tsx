@@ -13,7 +13,7 @@ function App() {
           strings: ["most frustrating login page ever"],
           autoStart: true,
           loop: true
-        }}/>
+        }} />
       </header>
     </div>
   )
